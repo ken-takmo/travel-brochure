@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth, db } from "../database/db";
-import { regions } from "../utils/regions";
+import { regions } from "../utils/utils";
 
 export const PostBrochure = () => {
   const [newTrip, setNewTrip] = useState({});
@@ -11,23 +11,24 @@ export const PostBrochure = () => {
   const [region, setRegion] = useState("");
 
   const addbutton = async () => {
-    // if (!destination || !theme || !companion || !region) {
-    //   alert("全ての項目を入力してください");
-    //   return;
-    // }
+    if (!destination || !theme || !companion || !region) {
+      alert("全ての項目を入力してください");
+      return;
+    }
     // if (isNaN(parseInt(companion, 10)) || isNaN(parseInt(region, 10))) {
     //   alert("誰と、地域は半角数字で入力してください");
     //   return;
     // }
-    // const ref = await db.collection("trips").add({
-    //   destination: destination,
-    //   theme: theme,
-    //   companion: companion,
-    //   region: region,
-    //   evaluation: 0,
-    // });
-    // const data = await ref.get();
-    // setNewTrip(data.data());
+    const ref = await db.collection("trips").add({
+      destination: destination,
+      theme: theme,
+      companion: companion,
+      region: region,
+      evaluation: 0,
+    });
+    const data = await ref.get();
+    setNewTrip(data.data());
+    alert("投稿されました");
   };
 
   const options = [];
@@ -82,10 +83,6 @@ export const PostBrochure = () => {
           );
         })}
       </select>
-      <p>
-        {newTrip.destination},{newTrip.theme},{newTrip.companion},
-        {newTrip.region}が投稿されました
-      </p>
       <button onClick={addbutton}>投稿</button>
       <Link to="/getbrochures">データ一覧</Link>
     </main>

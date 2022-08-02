@@ -98,7 +98,7 @@ header nav {
   align-items: center;
   flex: 1;
 }
-header p {
+.header-link {
   color: #f4f5f7;
   text-align: center;
   padding: 0;
@@ -107,7 +107,7 @@ header p {
   transition: opacity 0.8s;
   cursor: pointer;
 }
-header p:hover {
+.header-link:hover {
   color: yellow;
 }
 /* main */
