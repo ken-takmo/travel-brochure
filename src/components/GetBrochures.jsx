@@ -17,22 +17,22 @@ export const GetBrochures = () => {
   })();
   const datalist = trips.map((trip) => {
     return (
-      <div class="trip-data" key={trip.tripID}>
-        <div class="trip-data-main">
-          <div class="trip-theme trip-data-child">
+      <div className="trip-data" key={trip.tripId}>
+        <div className="trip-data-main">
+          <div className="trip-theme trip-data-child">
             <p>{trip.theme}</p>
           </div>
-          <div class="trip-destination trip-data-child">
+          <div className="trip-destination trip-data-child">
             <p>{trip.destination}</p>
           </div>
         </div>
-        <div class="trip-details  trip-data-child">
+        <div className="trip-details  trip-data-child">
           <small>評価</small>
-          <p class="detail">{trip.evaluation}</p>
+          <p className="detail">{trip.evaluation}</p>
           <small>誰と</small>
-          <p class="detail">{trip.companion}</p>
+          <p className="detail">{trip.companion}</p>
           <small>地域</small>
-          <p class="detail">{trip.region}</p>
+          <p className="detail">{trip.region}</p>
         </div>
       </div>
     );
