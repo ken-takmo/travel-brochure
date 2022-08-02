@@ -1,0 +1,340 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+body > * {
+  box-sizing: border-box;
+}
+p {
+  margin: 0;
+  padding: 10px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+h1 {
+  text-align: center;
+}
+hr {
+  margin: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+label {
+  color: rgb(104, 104, 104);
+  font-family: "Tsukushi B Round Gothic";
+}
+
+.selecter > label:not(:first-child) {
+  margin: 0 10px 0 20px;
+}
+
+.selecter > label:first-child {
+  margin-right: 10px;
+}
+
+.selecter {
+  display: flex;
+}
+
+form > * {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+input[type="text"] {
+  width: 80%;
+}
+
+input[type="text"],
+textarea {
+  text-align: left;
+  border-radius: 10px;
+  margin: auto;
+}
+
+textarea {
+  width: 80%;
+}
+
+input[type="submit"] {
+  width: 100px;
+  margin: 0 auto 30px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* header */
+header {
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header h1 {
+  background-color: #fff;
+  margin: 0;
+  flex: 2;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header nav {
+  background-color: rgb(148, 148, 148);
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.header-link {
+  color: #f4f5f7;
+  text-align: center;
+  padding: 0;
+  width: 15%;
+  height: 100%;
+  transition: opacity 0.8s;
+  cursor: pointer;
+}
+.header-link:hover {
+  color: yellow;
+}
+/* main */
+main {
+  min-height: 60vh;
+  margin: 30px 0 100px 0;
+  background-color: #ffffff;
+}
+/* home */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image-links {
+  width: 700px;
+  display: flex;
+  justify-content: space-around;
+}
+.post-link,
+.list-link {
+  position: relative;
+  cursor: pointer;
+  transition: opacity 1s;
+}
+.list-link img,
+.post-link img {
+  width: 300px;
+  height: 300px;
+  transition: opacity 0.5s;
+}
+
+.list-link:hover .list-link-img,
+.post-link:hover .post-link-img {
+  opacity: 0.4;
+}
+.list-link:hover .list-link-p,
+.post-link:hover .post-link-p {
+  opacity: 1;
+}
+.list-link p,
+.post-link p {
+  font-size: 20px;
+  color: rgb(91, 90, 90);
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s;
+}
+
+.trip-datas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.trip-data {
+  cursor: pointer;
+  transition: opacity 1s;
+  margin-top: 30px;
+  display: flex;
+  width: 80vw;
+  min-height: 150px;
+  background-color: #eb1d36;
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.9);
+}
+
+.trip-data:hover {
+  opacity: 0.5;
+}
+
+.trip-data:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
+}
+.trip-data-main {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px 0 0 20px;
+}
+.trip-details {
+  background-color: #eb1d36;
+  flex: 1;
+  border-left: dotted thick black;
+}
+.trip-details small {
+  color: #fff;
+}
+.trip-details p {
+  text-align: center;
+}
+.trip-theme {
+  background-color: #eb1d36;
+  flex: 1;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 20px 0 0 0;
+}
+
+.trip-theme p {
+  color: #fff;
+  font-family: serif;
+}
+
+.trip-destination {
+  background-color: #fff;
+  flex: 3;
+  background-image: url("../img/map.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+}
+
+/* detail */
+.detail {
+  flex: 1;
+  text-align: center;
+}
+.trip-data > nav {
+  background-color: #fff;
+  width: 95%;
+  display: flex;
+  margin: 0 auto 20px;
+  border-radius: 0 0 10px 10px;
+}
+.link {
+  flex: 1;
+  text-align: center;
+}
+
+.detail h1,
+.detail p,
+.detail h3 {
+  font-family: "Tsukushi B Round Gothic";
+}
+.detail-data {
+  min-height: 500px;
+  background-color: #dac9a6;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 80vw;
+}
+.detail-data a {
+  color: rgb(188, 142, 142);
+}
+.detail-data-header {
+  display: flex;
+  flex: 2;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.detail-data-main {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.detail-data-detail {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.detail-data-links {
+  flex: 1;
+  display: flex;
+}
+
+/* postForm */
+.post-form {
+  background-color: #dac9a6;
+  margin: 30px auto 100px;
+  width: 90%;
+  border-radius: 40px;
+}
+
+.post-form > h1 {
+  color: #f4f5f7;
+  font-family: "Tsukushi B Round Gothic";
+  height: 10vh;
+  line-height: 10vh;
+  background-color: #e2943b;
+  border-radius: 40px 40px 0 0;
+}
+
+/* searchForm */
+.search-form {
+  /* background-color: pink; */
+}
+
+/* updateForm */
+.update-form {
+  background-color: #dac9a6;
+  margin: 30px auto 100px;
+  width: 90%;
+  border-radius: 40px;
+}
+
+.update-form > h1 {
+  color: #f4f5f7;
+  font-family: "Tsukushi B Round Gothic";
+  height: 10vh;
+  line-height: 10vh;
+  background-color: #e2943b;
+  border-radius: 40px 40px 0 0;
+}
+
+/* footer */
+
+footer {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: #fff;
+}
