@@ -21,7 +21,7 @@ hr {
   margin: 0;
 }
 
-form {
+.forms {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,14 +40,9 @@ label {
   margin-right: 10px;
 }
 
-.selecter {
-  display: flex;
-}
-
-form > * {
+.forms > * {
   display: flex;
   justify-content: center;
-  text-align: center;
 }
 
 input[type="text"] {
@@ -56,7 +51,6 @@ input[type="text"] {
 
 input[type="text"],
 textarea {
-  text-align: left;
   border-radius: 10px;
   margin: auto;
 }
@@ -65,7 +59,7 @@ textarea {
   width: 80%;
 }
 
-input[type="submit"] {
+button {
   width: 100px;
   margin: 0 auto 30px;
   border-radius: 30px;
