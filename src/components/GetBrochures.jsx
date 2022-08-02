@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { db } from "../database/db";
 import { regions, companions } from "../utils/utils";
+import background from "../img/map.jpg";
 
 export const GetBrochures = () => {
   const navigate = useNavigate();
@@ -40,7 +41,10 @@ export const GetBrochures = () => {
                 <div className="trip-theme trip-data-child">
                   <p>{trip.theme}</p>
                 </div>
-                <div className="trip-destination trip-data-child">
+                <div
+                  className="trip-destination trip-data-child"
+                  style={{ backgroundImage: `url(${background})` }}
+                >
                   <p>{trip.destination}</p>
                 </div>
               </div>
