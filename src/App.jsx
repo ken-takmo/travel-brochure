@@ -3,6 +3,7 @@ import { PostBrochure } from "./components/PostBrochure";
 import { GetBrochures } from "./components/GetBrochures";
 import { Header } from "./components/Header";
 import { Detail } from "./components/Detail";
+import { Footer } from "./components/Footer";
 function App() {
   return (
     <div className="App">
@@ -13,6 +14,7 @@ function App() {
           <Route path="/getbrochures" element={<GetBrochures />}></Route>
           <Route path="/detail/:id" element={<Detail />}></Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );
