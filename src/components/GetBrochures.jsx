@@ -19,6 +19,7 @@ export const GetBrochures = () => {
       });
       setTrips(_trips);
     };
+
     getbrochures();
   }, []);
   return (

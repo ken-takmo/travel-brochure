@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../database/db";
 import { regions, companions } from "../utils/utils";
+import { useBrochure } from "../parts/useBrochure";
 export const Update = () => {
   const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
+  const { updateBrochure } = useBrochure(brochureID);
   const [detail, setDetail] = useState({});
   const result = [];
   const [destination, setDestination] = useState(detail.destination);
@@ -69,21 +71,21 @@ export const Update = () => {
     return regionOptions;
   };
 
-  const updateBrochure = async () => {
-    try {
-      await db.collection("trips").doc(brochureID).update({
-        destination: destination,
-        theme: theme,
-        content: content,
-        companion: companion,
-        region: region,
-      });
-    } catch (error) {
-      alert(error);
-    }
-    alert("更新されました");
-    navigate(`/detail/${brochureID}`);
-  };
+  // const updateBrochure = async () => {
+  //   try {
+  //     await db.collection("trips").doc(brochureID).update({
+  //       destination: destination,
+  //       theme: theme,
+  //       content: content,
+  //       companion: companion,
+  //       region: region,
+  //     });
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  //   alert("更新されました");
+  //   navigate(`/detail/${brochureID}`);
+  // };
 
   return (
     <main className="update-form">
@@ -136,7 +138,17 @@ export const Update = () => {
           </select>
         </div>
         <br />
-        <button onClick={updateBrochure}>更新</button>
+        <button
+          onClick={updateBrochure(
+            destination,
+            theme,
+            content,
+            companion,
+            region
+          )}
+        >
+          更新
+        </button>
         <button onClick={() => navigate(-1)}>戻る</button>
       </div>
     </main>
