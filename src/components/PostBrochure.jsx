@@ -2,34 +2,15 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../database/db";
 import { regions } from "../utils/utils";
+import { useBrochure } from "../parts/useBrochure";
 
 export const PostBrochure = () => {
-  const navigate = useNavigate();
-  const [newTrip, setNewTrip] = useState({});
   const [destination, setDestination] = useState("");
   const [theme, setTheme] = useState("");
   const [content, setContent] = useState("");
   const [companion, setCompanion] = useState("");
   const [region, setRegion] = useState("");
-
-  const addbutton = async () => {
-    if (!destination || !theme || !content || !companion || !region) {
-      alert("全ての項目を入力してください");
-      return;
-    }
-    const ref = await db.collection("trips").add({
-      destination: destination,
-      theme: theme,
-      content: content,
-      companion: companion,
-      region: region,
-      evaluation: 0,
-    });
-    const data = await ref.get();
-    setNewTrip(data.data());
-    alert("投稿されました");
-    navigate("/getbrochures");
-  };
+  const { postBrochure } = useBrochure();
 
   const options = [];
   for (let i = 0; i < 47; i++) {
@@ -98,7 +79,13 @@ export const PostBrochure = () => {
           </select>
         </div>
         <br />
-        <button onClick={addbutton}>投稿</button>
+        <button
+          onClick={() =>
+            postBrochure(destination, theme, content, companion, region)
+          }
+        >
+          投稿
+        </button>
       </div>
     </main>
   );
