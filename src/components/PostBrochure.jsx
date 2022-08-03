@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../database/db";
 import { regions } from "../utils/utils";
 
 export const PostBrochure = () => {
+  const navigate = useNavigate();
   const [newTrip, setNewTrip] = useState({});
   const [destination, setDestination] = useState("");
   const [theme, setTheme] = useState("");
@@ -27,11 +28,12 @@ export const PostBrochure = () => {
     const data = await ref.get();
     setNewTrip(data.data());
     alert("投稿されました");
+    navigate("/getbrochures");
   };
 
   const options = [];
-  for (let i = 1; i <= 47; i++) {
-    options.push({ value: i, label: regions[i - 1] });
+  for (let i = 0; i < 47; i++) {
+    options.push({ value: i, label: regions[i] });
   }
 
   return (
@@ -47,14 +49,12 @@ export const PostBrochure = () => {
         />
         <br />
         <label htmlFor="theme">旅行テーマ</label>
-        <textarea
-          name="theme"
+        <input
+          type="text"
           id="theme"
-          cols="30"
-          rows="10"
           value={theme}
           onChange={(e) => setTheme(e.target.value)}
-        ></textarea>
+        />
         <br />
         <label htmlFor="content">内容</label>
         <textarea
@@ -75,10 +75,10 @@ export const PostBrochure = () => {
             onChange={(e) => setCompanion(e.target.value)}
           >
             <option value="">選択してください</option>
-            <option value="1">ひとり</option>
-            <option value="2">友人</option>
-            <option value="3">恋人・パートナー</option>
-            <option value="4">家族</option>
+            <option value="0">ひとり</option>
+            <option value="1">友人</option>
+            <option value="2">恋人・パートナー</option>
+            <option value="3">家族</option>
           </select>
           <label htmlFor="region">地域</label>
           <select
@@ -87,6 +87,7 @@ export const PostBrochure = () => {
             value={region}
             onChange={(e) => setRegion(e.target.value)}
           >
+            <option value="">選択してください</option>
             {options.map((option) => {
               return (
                 <option value={option.value} key={option.value}>
