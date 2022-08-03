@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../database/db";
 import { regions, companions } from "../utils/utils";
 export const Detail = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
   const [detail, setDetail] = useState([]);
@@ -12,11 +13,20 @@ export const Detail = () => {
     const getDetail = async () => {
       const doc = await db.collection("trips").doc(brochureID).get();
       result.push({ ...doc.data() });
-      console.log(result);
       setDetail(result);
     };
     getDetail();
   }, []);
+
+  const deleteBrochure = async () => {
+    try {
+      await db.collection("trips").doc(brochureID).delete();
+      alert("削除されました");
+      navigate("/getbrochures");
+    } catch (error) {
+      alert(error);
+    }
+  };
   return (
     <main className="detail">
       <h1>しおり詳細</h1>
@@ -38,8 +48,11 @@ export const Detail = () => {
               <p>地域：{regions[deta.region]}</p>
             </div>
             <nav className="detail-data-links">
-              <p className="link"></p>
-              <p className="link"></p>
+              <button onClick={() => navigate(`/update/${brochureID}`)}>
+                編集
+              </button>
+              <button onClick={() => navigate(-1)}>戻る</button>
+              <button onClick={deleteBrochure}>削除</button>
             </nav>
           </div>
         );

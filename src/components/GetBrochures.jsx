@@ -17,15 +17,10 @@ export const GetBrochures = () => {
           ...doc.data(),
         });
       });
-      console.log(_trips);
       setTrips(_trips);
     };
     getbrochures();
   }, []);
-
-  // const toDetail = (id) => {
-  //   navigate(`/detail/${id}`);
-  // };
   return (
     <main>
       <h1>しおり一覧</h1>
