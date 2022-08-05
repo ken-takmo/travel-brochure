@@ -1,13 +1,29 @@
 import { db } from "../database/db";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../database/db";
 
 export const useBrochure = (id) => {
   const navigate = useNavigate();
   const [detail, setDetail] = useState([]);
   const [trips, setTrips] = useState();
+  const [loading, setLoading] = useState(false);
+  const [isUploaded, setIsUploaded] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
   const result = [];
   const _trips = [];
+
+  const getImage = (url) => {
+    getDownloadURL(ref(storage, `image/${url}`))
+      .then((res) => {
+        setImageUrl(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return <img src={imageUrl} alt="取得画像"></img>;
+  };
 
   useEffect(() => {
     const getDetail = async () => {
@@ -53,14 +69,46 @@ export const useBrochure = (id) => {
     }
   };
 
+  const ImageUpload = (fileData) => {
+    const file = fileData[0];
+    const storageRef = ref(storage, "image/" + file.name);
+    const uploadImage = uploadBytesResumable(storageRef, file);
+
+    uploadImage.on(
+      "state_changed",
+      (snapshot) => {
+        setLoading(true);
+      },
+      (err) => {
+        console.log(err);
+        return;
+      },
+      () => {
+        setLoading(false);
+        setIsUploaded(true);
+        setTimeout(() => {
+          alert("投稿されました");
+          navigate("/getbrochures");
+        }, 1000);
+      }
+    );
+  };
   const postBrochure = async (
     destination,
     theme,
     content,
     companion,
-    region
+    region,
+    fileData
   ) => {
-    if (!destination || !theme || !content || !companion || !region) {
+    if (
+      !destination ||
+      !theme ||
+      !content ||
+      !companion ||
+      !region ||
+      !fileData
+    ) {
       alert("全ての項目を入力してください");
       return;
     }
@@ -72,10 +120,10 @@ export const useBrochure = (id) => {
         companion: companion,
         region: region,
         evaluation: 0,
+        image: fileData[0].name,
       });
-      console.log("post");
-      alert("投稿されました");
-      navigate("/getbrochures");
+      console.log(fileData[0].name);
+      ImageUpload(fileData);
     } catch (error) {
       alert(error);
     }
@@ -104,5 +152,14 @@ export const useBrochure = (id) => {
     }
   };
 
-  return { trips, detail, deleteBrochure, postBrochure, updateBrochure };
+  return {
+    trips,
+    detail,
+    isUploaded,
+    loading,
+    deleteBrochure,
+    postBrochure,
+    updateBrochure,
+    getImage,
+  };
 };

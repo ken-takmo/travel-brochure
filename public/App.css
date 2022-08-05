@@ -45,11 +45,13 @@ label {
   justify-content: center;
 }
 
-input[type="text"] {
+input[type="text"],
+input[tyep="file"] {
   width: 80%;
 }
 
 input[type="text"],
+input[type="file"],
 textarea {
   border-radius: 10px;
   margin: auto;
@@ -171,7 +173,7 @@ main {
   min-height: 150px;
   background-color: #eb1d36;
   border-radius: 20px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.9);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 
 .trip-data:hover {
@@ -192,11 +194,21 @@ main {
   flex: 1;
   border-left: dotted thick black;
 }
+.good {
+  display: flex;
+  justify-content: space-around;
+}
+.good-button {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
 .trip-details small {
   color: #fff;
 }
 .trip-details p {
   text-align: center;
+  color: #fff;
 }
 .trip-theme {
   background-color: #eb1d36;
@@ -271,6 +283,16 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.image {
+  width: 80%;
+  height: 80%;
+}
+.image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* transform: translate(-50%, 50%); */
 }
 .detail-data-detail {
   flex: 3;

@@ -139,13 +139,9 @@ export const Update = () => {
         </div>
         <br />
         <button
-          onClick={updateBrochure(
-            destination,
-            theme,
-            content,
-            companion,
-            region
-          )}
+          onClick={() =>
+            updateBrochure(destination, theme, content, companion, region)
+          }
         >
           更新
         </button>

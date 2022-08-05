@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { db } from "../database/db";
 import { regions, companions } from "../utils/utils";
 import background from "../img/map.jpg";
+import goodbutton from "../img/good.svg";
 
 export const GetBrochures = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ export const GetBrochures = () => {
 
     getbrochures();
   }, []);
+
   return (
     <main>
       <h1>しおり一覧</h1>
@@ -45,7 +47,7 @@ export const GetBrochures = () => {
                 </div>
               </div>
               <div className="trip-details  trip-data-child">
-                <small>評価</small>
+                <small>いいね！</small>
                 <p className="detail">{trip.evaluation}</p>
                 <small>誰と</small>
                 <p className="detail">{companions[trip.companion]}</p>
