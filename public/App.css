@@ -45,11 +45,13 @@ label {
   justify-content: center;
 }
 
-input[type="text"] {
+input[type="text"],
+input[tyep="file"] {
   width: 80%;
 }
 
 input[type="text"],
+input[type="file"],
 textarea {
   border-radius: 10px;
   margin: auto;
@@ -191,6 +193,15 @@ main {
   background-color: #eb1d36;
   flex: 1;
   border-left: dotted thick black;
+}
+.good {
+  display: flex;
+  justify-content: space-around;
+}
+.good-button {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
 }
 .trip-details small {
   color: #fff;

@@ -1,11 +1,15 @@
 import { db } from "../database/db";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../database/db";
 
 export const useBrochure = (id) => {
   const navigate = useNavigate();
   const [detail, setDetail] = useState([]);
   const [trips, setTrips] = useState();
+  const [loading, setLoading] = useState(false);
+  const [isUploaded, setIsUploaded] = useState(false);
   const result = [];
   const _trips = [];
 
@@ -53,14 +57,46 @@ export const useBrochure = (id) => {
     }
   };
 
+  const ImageUpload = (fileData) => {
+    const file = fileData[0];
+    const storageRef = ref(storage, "image/" + file.name);
+    const uploadImage = uploadBytesResumable(storageRef, file);
+
+    uploadImage.on(
+      "state_changed",
+      (snapshot) => {
+        setLoading(true);
+      },
+      (err) => {
+        console.log(err);
+        return;
+      },
+      () => {
+        setLoading(false);
+        setIsUploaded(true);
+        setTimeout(() => {
+          alert("投稿されました");
+          navigate("/getbrochures");
+        }, 1000);
+      }
+    );
+  };
   const postBrochure = async (
     destination,
     theme,
     content,
     companion,
-    region
+    region,
+    fileData
   ) => {
-    if (!destination || !theme || !content || !companion || !region) {
+    if (
+      !destination ||
+      !theme ||
+      !content ||
+      !companion ||
+      !region ||
+      !fileData
+    ) {
       alert("全ての項目を入力してください");
       return;
     }
@@ -73,9 +109,7 @@ export const useBrochure = (id) => {
         region: region,
         evaluation: 0,
       });
-      console.log("post");
-      alert("投稿されました");
-      navigate("/getbrochures");
+      ImageUpload(fileData);
     } catch (error) {
       alert(error);
     }
@@ -104,5 +138,13 @@ export const useBrochure = (id) => {
     }
   };
 
-  return { trips, detail, deleteBrochure, postBrochure, updateBrochure };
+  return {
+    trips,
+    detail,
+    isUploaded,
+    loading,
+    deleteBrochure,
+    postBrochure,
+    updateBrochure,
+  };
 };
