@@ -1,28 +1,11 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { db } from "../database/db";
+import { useNavigate } from "react-router-dom";
 import { regions, companions } from "../utils/utils";
 import background from "../img/map.jpg";
-import goodbutton from "../img/good.svg";
+import { useGetAll } from "../parts/useGetAll";
 
 export const GetBrochures = () => {
   const navigate = useNavigate();
-  const [trips, setTrips] = useState([]);
-  const _trips = [];
-  useEffect(() => {
-    const getbrochures = async () => {
-      const docs = await db.collection("trips").get();
-      docs.forEach((doc) => {
-        _trips.push({
-          tripId: doc.id,
-          ...doc.data(),
-        });
-      });
-      setTrips(_trips);
-    };
-
-    getbrochures();
-  }, []);
+  const trips = useGetAll();
 
   return (
     <main>
