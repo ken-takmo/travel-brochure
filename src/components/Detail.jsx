@@ -9,6 +9,12 @@ export const Detail = () => {
   const params = useParams();
   const brochureID = params.id;
   const { detail, deleteBrochure } = useBrochure(brochureID);
+  const { getImage } = useBrochure();
+
+  // const imageUrl = getImage(detail[0].image);
+  // useEffect(() => {
+  //   console.log(detail[0].image);
+  // }, [detail]);
   // const [isGood, setIsGood] = useState(false);
 
   // const addEvaluation = async (id, evaluation) => {
@@ -54,6 +60,11 @@ export const Detail = () => {
             <div className="detail-data-main">
               <p className="detail-theme">旅行テーマ：{deta.theme}</p>
               <p className="detail-content">感想：{deta.content}</p>
+              {/* <img src={imageUrl} alt="取得画像" /> */}
+              {deta.image && (
+                <div className="image">{getImage(deta.image)}</div>
+              )}
+              {/* <div className="image">{getImage(deta.image)}</div> */}
             </div>
             <hr />
             <div className="detail-data-detail">
