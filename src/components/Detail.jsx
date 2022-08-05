@@ -51,7 +51,7 @@ export const Detail = () => {
             編集
           </button>
           <button onClick={() => navigate(-1)}>戻る</button>
-          <button onClick={deleteBrochure}>削除</button>
+          <button onClick={() => deleteBrochure(detail.image)}>削除</button>
         </nav>
       </div>
     </main>
