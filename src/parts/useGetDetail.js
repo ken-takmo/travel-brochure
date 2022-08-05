@@ -5,7 +5,14 @@ import { deleteObject, ref } from "firebase/storage";
 import { storage } from "../database/db";
 export const useGetDetail = (id) => {
   const navigate = useNavigate();
-  const [detail, setDetail] = useState([]);
+  const [detail, setDetail] = useState({
+    destination: "",
+    theme: "",
+    content: "",
+    image: "",
+    companion: 0,
+    region: 0,
+  });
   const result = [];
 
   useEffect(() => {
