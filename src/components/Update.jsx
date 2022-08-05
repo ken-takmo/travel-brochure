@@ -3,26 +3,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../database/db";
 import { regions, companions } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
+import { useGetDetail } from "../parts/useGetDetail";
 export const Update = () => {
   const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
   const { updateBrochure } = useBrochure(brochureID);
-  const [detail, setDetail] = useState({});
-  const result = [];
-  const [destination, setDestination] = useState(detail.destination);
-  const [theme, setTheme] = useState(detail.theme);
-  const [content, setContent] = useState(detail.content);
-  const [companion, setCompanion] = useState(detail.companion);
-  const [region, setRegion] = useState(detail.region);
+  const { detail } = useGetDetail(brochureID);
+  const [destination, setDestination] = useState("");
+  const [theme, setTheme] = useState("");
+  const [content, setContent] = useState("");
+  const [companion, setCompanion] = useState(0);
+  const [region, setRegion] = useState(0);
 
-  useEffect(() => {
-    const getDetail = async () => {
-      const doc = await db.collection("trips").doc(brochureID).get();
-      setDetail(doc.data());
-    };
-    getDetail();
-  }, []);
   useEffect(() => {
     setDestination(detail.destination);
     setTheme(detail.theme);
@@ -70,22 +63,6 @@ export const Update = () => {
     }
     return regionOptions;
   };
-
-  // const updateBrochure = async () => {
-  //   try {
-  //     await db.collection("trips").doc(brochureID).update({
-  //       destination: destination,
-  //       theme: theme,
-  //       content: content,
-  //       companion: companion,
-  //       region: region,
-  //     });
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  //   alert("更新されました");
-  //   navigate(`/detail/${brochureID}`);
-  // };
 
   return (
     <main className="update-form">
