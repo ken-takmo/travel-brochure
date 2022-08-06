@@ -1,42 +1,45 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { db } from "../database/db";
 import { regions, companions } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
+import { useGetDetail } from "../parts/useGetDetail";
 export const Update = () => {
   const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
   const { updateBrochure } = useBrochure(brochureID);
-  const [detail, setDetail] = useState({});
-  const result = [];
-  const [destination, setDestination] = useState(detail.destination);
-  const [theme, setTheme] = useState(detail.theme);
-  const [content, setContent] = useState(detail.content);
-  const [companion, setCompanion] = useState(detail.companion);
-  const [region, setRegion] = useState(detail.region);
+  const { detail } = useGetDetail(brochureID);
+  const [destination, setDestination] = useState("");
+  const [theme, setTheme] = useState("");
+  const [content, setContent] = useState("");
+  const [companion, setCompanion] = useState(0);
+  const [region, setRegion] = useState(0);
+  const [preImage, setPreimage] = useState("");
+  const [fileData, setFileData] = useState("");
+  const [isUpdate, setUpdate] = useState(false);
+  const { getImage } = useBrochure();
 
-  useEffect(() => {
-    const getDetail = async () => {
-      const doc = await db.collection("trips").doc(brochureID).get();
-      setDetail(doc.data());
-    };
-    getDetail();
-  }, []);
   useEffect(() => {
     setDestination(detail.destination);
     setTheme(detail.theme);
     setContent(detail.content);
     setCompanion(detail.companion);
     setRegion(detail.region);
+    setPreimage(detail.image);
   }, [detail]);
+
+  useEffect(() => {
+    if (fileData) {
+      setUpdate(true);
+    }
+  }, [fileData]);
 
   const companionOption = (data) => {
     const companionOptions = [];
     for (let i = 0; i < 4; i++) {
       if (i == data) {
         companionOptions.push(
-          <option key={i} value={i} selected>
+          <option key={i} value={i} defaultValue>
             {companions[i]}
           </option>
         );
@@ -56,7 +59,7 @@ export const Update = () => {
     for (let i = 0; i < 47; i++) {
       if (i == deta) {
         regionOptions.push(
-          <option key={i} value={i} selected>
+          <option key={i} value={i} defaultValue>
             {regions[i]}
           </option>
         );
@@ -70,23 +73,6 @@ export const Update = () => {
     }
     return regionOptions;
   };
-
-  // const updateBrochure = async () => {
-  //   try {
-  //     await db.collection("trips").doc(brochureID).update({
-  //       destination: destination,
-  //       theme: theme,
-  //       content: content,
-  //       companion: companion,
-  //       region: region,
-  //     });
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  //   alert("更新されました");
-  //   navigate(`/detail/${brochureID}`);
-  // };
-
   return (
     <main className="update-form">
       <h1>しおり編集</h1>
@@ -138,14 +124,32 @@ export const Update = () => {
           </select>
         </div>
         <br />
+        {detail.image && <div className="image">{getImage(detail.image)}</div>}
+        <label htmlFor="image">画像(変更ない場合は未入力)</label>
+        <input
+          type="file"
+          id="image"
+          accept=".png, .jpeg, .jpg"
+          onChange={(e) => setFileData(e.target.files)}
+        />
+        <br />
         <button
           onClick={() =>
-            updateBrochure(destination, theme, content, companion, region)
+            updateBrochure(
+              destination,
+              theme,
+              content,
+              companion,
+              region,
+              preImage,
+              fileData,
+              isUpdate
+            )
           }
         >
           更新
         </button>
-        <button onClick={() => navigate(-1)}>戻る</button>
+        <button onClick={() => navigate(`/detail/${brochureID}`)}>戻る</button>
       </div>
     </main>
   );
