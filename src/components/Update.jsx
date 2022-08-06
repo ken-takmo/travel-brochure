@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { db } from "../database/db";
 import { regions, companions } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
 import { useGetDetail } from "../parts/useGetDetail";
@@ -15,6 +14,10 @@ export const Update = () => {
   const [content, setContent] = useState("");
   const [companion, setCompanion] = useState(0);
   const [region, setRegion] = useState(0);
+  const [preImage, setPreimage] = useState("");
+  const [fileData, setFileData] = useState("");
+  const [isUpdate, setUpdate] = useState(false);
+  const { getImage } = useBrochure();
 
   useEffect(() => {
     setDestination(detail.destination);
@@ -22,14 +25,21 @@ export const Update = () => {
     setContent(detail.content);
     setCompanion(detail.companion);
     setRegion(detail.region);
+    setPreimage(detail.image);
   }, [detail]);
+
+  useEffect(() => {
+    if (fileData) {
+      setUpdate(true);
+    }
+  }, [fileData]);
 
   const companionOption = (data) => {
     const companionOptions = [];
     for (let i = 0; i < 4; i++) {
       if (i == data) {
         companionOptions.push(
-          <option key={i} value={i} selected>
+          <option key={i} value={i} defaultValue>
             {companions[i]}
           </option>
         );
@@ -49,7 +59,7 @@ export const Update = () => {
     for (let i = 0; i < 47; i++) {
       if (i == deta) {
         regionOptions.push(
-          <option key={i} value={i} selected>
+          <option key={i} value={i} defaultValue>
             {regions[i]}
           </option>
         );
@@ -63,7 +73,6 @@ export const Update = () => {
     }
     return regionOptions;
   };
-
   return (
     <main className="update-form">
       <h1>しおり編集</h1>
@@ -115,14 +124,32 @@ export const Update = () => {
           </select>
         </div>
         <br />
+        {detail.image && <div className="image">{getImage(detail.image)}</div>}
+        <label htmlFor="image">画像(変更ない場合は未入力)</label>
+        <input
+          type="file"
+          id="image"
+          accept=".png, .jpeg, .jpg"
+          onChange={(e) => setFileData(e.target.files)}
+        />
+        <br />
         <button
           onClick={() =>
-            updateBrochure(destination, theme, content, companion, region)
+            updateBrochure(
+              destination,
+              theme,
+              content,
+              companion,
+              region,
+              preImage,
+              fileData,
+              isUpdate
+            )
           }
         >
           更新
         </button>
-        <button onClick={() => navigate(-1)}>戻る</button>
+        <button onClick={() => navigate(`/detail/${brochureID}`)}>戻る</button>
       </div>
     </main>
   );

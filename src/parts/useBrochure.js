@@ -1,7 +1,12 @@
 import { db } from "../database/db";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
 import { storage } from "../database/db";
 
 export const useBrochure = (id) => {
@@ -21,7 +26,18 @@ export const useBrochure = (id) => {
     return <img src={imageUrl} alt="取得画像"></img>;
   };
 
-  const ImageUpload = (fileData) => {
+  const updateImage = (preImage, newFileData, update) => {
+    deleteImage(preImage);
+    ImageUpload(newFileData, update);
+  };
+  const deleteImage = (preImage) => {
+    const storageRef = ref(storage, "image/" + preImage);
+    deleteObject(storageRef)
+      .then(() => console.log("削除されました"))
+      .catch((error) => console.log(error));
+  };
+
+  const ImageUpload = (fileData, update) => {
     const file = fileData[0];
     const storageRef = ref(storage, "image/" + file.name);
     const uploadImage = uploadBytesResumable(storageRef, file);
@@ -39,8 +55,13 @@ export const useBrochure = (id) => {
         setLoading(false);
         setIsUploaded(true);
         setTimeout(() => {
-          alert("投稿されました");
-          navigate("/getbrochures");
+          if (update) {
+            alert("変更しました");
+            navigate(`/detail/${id}`);
+          } else {
+            alert("投稿されました");
+            navigate("/getbrochures");
+          }
         }, 1000);
       }
     );
@@ -86,30 +107,46 @@ export const useBrochure = (id) => {
     theme,
     content,
     companion,
-    region
+    region,
+    preImage,
+    newFileData,
+    update
   ) => {
-    try {
-      await db.collection("trips").doc(id).update({
-        destination: destination,
-        theme: theme,
-        content: content,
-        companion: companion,
-        region: region,
-      });
-      console.log("update");
-      alert("更新されました");
-      navigate(`/detail/${id}`);
-    } catch (error) {
-      alert(error);
+    if (newFileData) {
+      try {
+        await db.collection("trips").doc(id).update({
+          destination: destination,
+          theme: theme,
+          content: content,
+          companion: companion,
+          region: region,
+          image: newFileData[0].name,
+        });
+        updateImage(preImage, newFileData, update);
+      } catch (error) {
+        alert(error);
+      }
+    } else {
+      try {
+        await db.collection("trips").doc(id).update({
+          destination: destination,
+          theme: theme,
+          content: content,
+          companion: companion,
+          region: region,
+        });
+        console.log("update");
+        alert("更新されました");
+        navigate(`/detail/${id}`);
+      } catch (error) {
+        alert(error);
+      }
     }
   };
 
   return {
-    // trips,
-    // detail,
     isUploaded,
     loading,
-    // deleteBrochure,
     postBrochure,
     updateBrochure,
     getImage,
