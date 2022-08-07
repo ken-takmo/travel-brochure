@@ -3,7 +3,7 @@ import { regions, companions } from "../utils/utils";
 import background from "../img/map.jpg";
 import { useGetAll } from "../parts/useGetAll";
 
-export const GetBrochures = () => {
+export const List = () => {
   const navigate = useNavigate();
   const trips = useGetAll();
 

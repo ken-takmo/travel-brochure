@@ -47,7 +47,7 @@ export const Detail = () => {
           <p>地域：{regions[detail.region]}</p>
         </div>
         <nav className="detail-data-links">
-          <button onClick={() => navigate(`/update/${brochureID}`)}>
+          <button onClick={() => navigate(`/updateform/${brochureID}`)}>
             編集
           </button>
           <button onClick={() => navigate(-1)}>戻る</button>

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { regions, companions } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
 import { useGetDetail } from "../parts/useGetDetail";
-export const Update = () => {
+export const UpdateForm = () => {
   const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;

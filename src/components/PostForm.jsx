@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { auth, db } from "../database/db";
 import { regions } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
 
-export const PostBrochure = () => {
+export const PostForm = () => {
   const [destination, setDestination] = useState("");
   const [theme, setTheme] = useState("");
   const [content, setContent] = useState("");
