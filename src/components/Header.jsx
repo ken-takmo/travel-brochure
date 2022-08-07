@@ -7,10 +7,10 @@ export const Header = () => {
         <Link to="/" className="header-link">
           ホーム
         </Link>
-        <Link to="/getbrochures" className="header-link">
+        <Link to="/list" className="header-link">
           しおり一覧
         </Link>
-        <Link to="/postbrochure" className="header-link">
+        <Link to="/postform" className="header-link">
           投稿
         </Link>
       </nav>
