@@ -41,7 +41,7 @@ export const useGetDetail = (id) => {
       await db.collection("trips").doc(id).delete();
       deleteImage(fileData);
       console.log("delete");
-      navigate("/getbrochures");
+      navigate("/list");
     } catch (error) {
       alert(error);
     }

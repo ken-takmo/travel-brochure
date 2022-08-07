@@ -60,7 +60,7 @@ export const useBrochure = (id) => {
             navigate(`/detail/${id}`);
           } else {
             alert("投稿されました");
-            navigate("/getbrochures");
+            navigate("/list");
           }
         }, 1000);
       }
