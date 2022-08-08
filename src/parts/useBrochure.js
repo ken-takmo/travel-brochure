@@ -72,7 +72,8 @@ export const useBrochure = (id) => {
     content,
     companion,
     region,
-    fileData
+    fileData,
+    userId
   ) => {
     if (
       !destination ||
@@ -80,7 +81,8 @@ export const useBrochure = (id) => {
       !content ||
       !companion ||
       !region ||
-      !fileData
+      !fileData ||
+      !userId
     ) {
       alert("全ての項目を入力してください");
       return;
@@ -94,6 +96,7 @@ export const useBrochure = (id) => {
         region: region,
         evaluation: 0,
         image: fileData[0].name,
+        userId: userId,
       });
       console.log(fileData[0].name);
       ImageUpload(fileData);

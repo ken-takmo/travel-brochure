@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { regions } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
+import { useUser } from "../parts/useUser";
 
 export const PostForm = () => {
   const [destination, setDestination] = useState("");
@@ -10,6 +11,7 @@ export const PostForm = () => {
   const [region, setRegion] = useState("");
   const [fileData, setFileData] = useState();
   const { postBrochure, isUploaded, loading } = useBrochure();
+  const { userId } = useUser();
 
   const options = [];
   for (let i = 0; i < 47; i++) {
@@ -102,7 +104,8 @@ export const PostForm = () => {
                       content,
                       companion,
                       region,
-                      fileData
+                      fileData,
+                      userId
                     )
                   }
                 >
