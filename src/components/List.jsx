@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { regions, companions } from "../utils/utils";
 import background from "../img/map.jpg";
 import { useGetAll } from "../parts/useGetAll";
+import { useUser } from "../parts/useUser";
 
 export const List = () => {
   const navigate = useNavigate();

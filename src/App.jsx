@@ -8,6 +8,7 @@ import { Home } from "./components/Home";
 import { UpdateForm } from "./components/UpdateForm";
 import { SignUp } from "./components/SignUp";
 import { SingIn } from "./components/SingIn";
+import { Profile } from "./components/Profile";
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
           <Route path="/updateform/:id" element={<UpdateForm />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SingIn />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </BrowserRouter>
