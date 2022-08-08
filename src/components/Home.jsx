@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import bookmarkimage from "../img/bookmark.jpg";
 import listimage from "../img/list.png";
-import { auth } from "../database/db";
 export const Home = () => {
   const navigate = useNavigate();
-  console.log(auth);
   return (
     <main className="home">
       <h1>旅のしおり共有</h1>
