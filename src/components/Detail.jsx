@@ -3,13 +3,14 @@ import { regions, companions } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
 import goodbutton from "../img/good.svg";
 import { useGetDetail } from "../parts/useGetDetail";
+import { useUser } from "../parts/useUser";
 export const Detail = () => {
   const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
   const { detail, deleteBrochure } = useGetDetail(brochureID);
   const { getImage } = useBrochure();
-
+  const { userId } = useUser();
   return (
     <main className="detail">
       <h1>しおり詳細</h1>
@@ -47,11 +48,17 @@ export const Detail = () => {
           <p>地域：{regions[detail.region]}</p>
         </div>
         <nav className="detail-data-links">
-          <button onClick={() => navigate(`/updateform/${brochureID}`)}>
-            編集
-          </button>
-          <button onClick={() => navigate(-1)}>戻る</button>
-          <button onClick={() => deleteBrochure(detail.image)}>削除</button>
+          {userId === detail.userId ? (
+            <>
+              <button onClick={() => navigate(`/updateform/${brochureID}`)}>
+                編集
+              </button>
+              <button onClick={() => navigate(-1)}>戻る</button>
+              <button onClick={() => deleteBrochure(detail.image)}>削除</button>
+            </>
+          ) : (
+            <button onClick={() => navigate(-1)}>戻る</button>
+          )}
         </nav>
       </div>
     </main>

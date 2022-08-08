@@ -13,11 +13,17 @@ export const useUser = () => {
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const [userName, setUserName] = useState();
+  const [userId, setUserId] = useState();
   const googleSignIn = () => {
     signInWithPopup(auth, provider)
       .then(() => {
-        alert("ログインしました");
-        navigate("/list");
+        if (!auth.currentUser.displayName) {
+          alert("ログインしました。ユーザーネームの登録をしてください");
+          navigate("/profile");
+        } else {
+          alert("ログインしました");
+          navigate("/list");
+        }
       })
       .catch(() => alert("ログインに失敗しました"));
   };
@@ -27,6 +33,13 @@ export const useUser = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user.uid);
+        if (!auth.currentUser.displayName) {
+          alert("ログインしました。ユーザーネームの登録をしてください");
+          navigate("/profile");
+        } else {
+          alert("ログインしました");
+          navigate("/list");
+        }
         // ...
       })
       .catch((error) => {
@@ -70,6 +83,7 @@ export const useUser = () => {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
+        setUserId(uid);
         setUserName(user.displayName);
         console.log("aa");
       } else {
@@ -84,6 +98,7 @@ export const useUser = () => {
     signOut,
     provider,
     userName,
+    userId,
     googleSignIn,
   };
 };
