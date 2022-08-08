@@ -37,6 +37,7 @@ export const Header = () => {
         <header>
           <div className="header-top">
             <h1>みんなのしおり</h1>
+            <p>ゲスト</p>
           </div>
           <div className="header-bottom">
             <nav>
