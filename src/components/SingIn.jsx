@@ -6,26 +6,35 @@ export const SingIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <main>
-      <div>
+    <main className="signin">
+      <div className="email-signin">
         <h2>メールアドレスでログイン</h2>
-        <label htmlFor="email">メールアドレス</label>
-        <input
-          type="text"
-          id="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">パスワード</label>
-        <input
-          type="text"
-          id="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button onClick={() => signIn(email, password)}>ログイン</button>
+        <br />
+        <div className="signin-form">
+          <label htmlFor="email">メールアドレス</label>
+          <input
+            type="text"
+            id="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <br />
+          <label htmlFor="password">パスワード</label>
+          <input
+            type="text"
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <br />
+          <button onClick={() => signIn(email, password)}>ログイン</button>
+        </div>
       </div>
-      <div>
+      <br />
+      <div className="google-signin">
         <h2>Googleアカウントでログイン</h2>
-        <button onClick={googleSignIn}>ログイン</button>
+        <br />
+        <div className="signin-form">
+          <button onClick={googleSignIn}>ログイン</button>
+        </div>
       </div>
     </main>
   );
