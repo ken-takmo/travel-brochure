@@ -23,11 +23,15 @@ export const PostForm = () => {
       {userId ? (
         <>
           {loading ? (
-            <h2>アップロード中・・・</h2>
+            <div className="uploading">
+              <h2>アップロード中・・・</h2>
+            </div>
           ) : (
             <>
               {isUploaded ? (
-                <h2>アップロード完了！</h2>
+                <div className="uploaded">
+                  <h2>アップロード完了！</h2>
+                </div>
               ) : (
                 <main className="post-form">
                   <h1>投稿フォーム</h1>
@@ -69,7 +73,7 @@ export const PostForm = () => {
                         <option value="">選択してください</option>
                         <option value="0">ひとり</option>
                         <option value="1">友人</option>
-                        <option value="2">恋人・パートナー</option>
+                        <option value="2">恋人</option>
                         <option value="3">家族</option>
                       </select>
                       <label htmlFor="region">地域</label>
@@ -122,7 +126,9 @@ export const PostForm = () => {
           )}
         </>
       ) : (
-        <p>ログイン後投稿ができます</p>
+        <div className="not-signin-postform">
+          <h2>ログイン後投稿ができます</h2>
+        </div>
       )}
     </>
   );

@@ -37,13 +37,20 @@ export const useGetDetail = (id) => {
   };
 
   const deleteBrochure = async (fileData) => {
-    try {
-      await db.collection("trips").doc(id).delete();
-      deleteImage(fileData);
-      console.log("delete");
-      navigate("/list");
-    } catch (error) {
-      alert(error);
+    const res = window.confirm(
+      "削除されると元には戻せませんがよろしいですか。"
+    );
+    if (res == true) {
+      try {
+        await db.collection("trips").doc(id).delete();
+        deleteImage(fileData);
+        console.log("delete");
+        navigate("/list");
+      } catch (error) {
+        alert(error);
+      }
+    } else {
+      return;
     }
   };
 

@@ -47,6 +47,6 @@ const regions = [
   "鹿児島県",
   "沖縄県",
 ];
-const companions = ["ひとり", "友人", "恋人・パートナー", "家族"];
+const companions = ["ひとり", "友人", "恋人", "家族"];
 
 export { regions, companions };
