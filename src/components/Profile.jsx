@@ -20,15 +20,18 @@ export const Profile = () => {
       });
   };
   return (
-    <main>
-      <h2>ユーザーネームの変更</h2>
-      <label htmlFor="username"></label>
-      <input
-        type="text"
-        id="username"
-        onChange={(e) => setUserName(e.target.value)}
-      />
-      <button onClick={() => updateUser(userName)}>変更</button>
+    <main className="profile">
+      <h1>ユーザーネームの変更</h1>
+      <div className="forms profile-form">
+        <label htmlFor="username">新しいユーザーネーム</label>
+        <input
+          type="text"
+          id="username"
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <br />
+        <button onClick={() => updateUser(userName)}>変更</button>
+      </div>
     </main>
   );
 };

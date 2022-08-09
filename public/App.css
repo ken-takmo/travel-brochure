@@ -6,7 +6,6 @@ body > * {
   box-sizing: border-box;
 }
 p {
-  margin: 0;
   padding: 10px;
 }
 
@@ -15,6 +14,7 @@ a {
   text-decoration: none;
 }
 h1 {
+  margin: 0;
   text-align: center;
 }
 hr {
@@ -70,34 +70,114 @@ button {
 
 /* header */
 header {
-  min-height: 20vh;
+  width: 100%;
+  height: 100px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .header-top {
   display: flex;
-  align-content: space-around;
+  height: 70px;
+  width: 100%;
+  background-color: rgb(132, 171, 243);
+}
+.header-top > p {
+  padding: 0;
 }
 
 header h1 {
-  background-color: #fff;
-  margin: 0;
+  color: #ffffff;
+  height: 100%;
+  font-family: "Hannotate SC";
+  border-radius: 10px;
+  margin: 0 0 0 15px;
+  cursor: pointer;
+  flex: 7;
+  line-height: 70px;
+  text-align: left;
+}
+.user-auth {
+  flex: 3;
+  height: 100%;
+  width: 100%;
+  line-height: 70px;
+  text-align: right;
+  margin-right: 10px;
+}
+.user-auth a {
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(255, 250, 250);
+}
+.user-info {
   flex: 2;
-  width: 100vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
+.user {
+  display: flex;
+  align-items: center;
+}
+.user button {
+  height: 30px;
+  margin: 0;
+}
+.material-symbols-outlined {
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+}
+#menus {
+  cursor: pointer;
+  color: #fff;
+}
+.overlay {
+  width: 30%;
+  position: fixed;
+  top: 0;
+  bottom: 400px;
+  right: 0;
+  background-color: rgb(255, 255, 255, 0.95);
+  outline: black solid 1px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: black;
+  cursor: pointer;
+}
+.user-info p {
+  color: #ffffff;
+}
+.overlay a,
+.overlay p {
+  color: black;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 5px;
+}
+.overlay a:hover,
+.overlay p:hover {
+  color: #fff;
+  background-color: blue;
+}
 
+.header-bottom {
+  height: 30px;
+}
 header nav {
   background-color: rgb(148, 148, 148);
   display: flex;
   width: 100vw;
+  min-height: 100%;
   justify-content: center;
   align-items: center;
-  flex: 1;
 }
 .header-link {
   color: #f4f5f7;
@@ -113,9 +193,9 @@ header nav {
 }
 /* main */
 main {
-  min-height: 60vh;
-  margin: 30px 0 100px 0;
-  background-color: #ffffff;
+  min-height: 459px;
+  margin: 30px auto 100px;
+  /* background-color: #ffffff; */
 }
 /* home */
 .home {
@@ -181,6 +261,13 @@ main {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 
+.trip-data p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
 .trip-data:hover {
   opacity: 0.5;
 }
@@ -190,6 +277,7 @@ main {
 }
 .trip-data-main {
   flex: 5;
+  width: 80%;
   display: flex;
   flex-direction: column;
   border-radius: 20px 0 0 20px;
@@ -275,6 +363,7 @@ main {
 .detail-data a {
   color: rgb(188, 142, 142);
 }
+
 .detail-data-header {
   display: flex;
   flex: 2;
@@ -328,9 +417,13 @@ main {
   border-radius: 40px 40px 0 0;
 }
 
-/* searchForm */
-.search-form {
-  /* background-color: pink; */
+.not-signin-postform,
+.uploading,
+.uploaded {
+  height: 459px;
+  margin: 30px auto 100px;
+  text-align: center;
+  line-height: 459px;
 }
 
 /* updateForm */
@@ -350,10 +443,115 @@ main {
   border-radius: 40px 40px 0 0;
 }
 
+/* profile */
+
+.profile {
+  background-color: #dac9a6;
+  width: 90%;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile h1 {
+  color: #f4f5f7;
+  font-family: "Tsukushi B Round Gothic";
+  flex: 1;
+  background-color: #e2943b;
+  border-radius: 40px 40px 0 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-form {
+  flex: 9;
+}
+.profile-form input,
+.profile-form button {
+  margin: 0 auto;
+}
+
+/* signin */
+.signin {
+  display: flex;
+  width: 90%;
+}
+.email-signin {
+  background-color: #dac9a6;
+  border-radius: 40px 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.google-signin {
+  background-color: #dac9a6;
+  border-radius: 40px 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 30px;
+}
+
+.signin h2 {
+  margin: 0;
+  background-color: #e2943b;
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px 40px 0 0;
+  color: #fff;
+}
+.signin-form {
+  flex: 8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* signup */
+.signup {
+  background-color: #dac9a6;
+  width: 90%;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.signup h1 {
+  color: #f4f5f7;
+  font-family: "Tsukushi B Round Gothic";
+  flex: 2;
+  background-color: #e2943b;
+  border-radius: 40px 40px 0 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup-form {
+  flex: 8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* mypage */
+.no-mybrochures {
+  height: 459px;
+  margin: 30px auto 100px;
+  text-align: center;
+  line-height: 459px;
+}
 /* footer */
 
 footer {
-  height: 20vh;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
