@@ -1,20 +1,25 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
+  updateProfile,
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../database/db";
 import { useState, useEffect } from "react";
+import { useAuth } from "../providers/AuthContext";
 
 export const useUser = () => {
   const navigate = useNavigate();
+  const isAuth = useAuth();
+  const user = auth.currentUser;
   const provider = new GoogleAuthProvider();
-  const [userName, setUserName] = useState();
+  // const [userName, setUserName] = useState();
   const [userId, setUserId] = useState();
-  const googleSignIn = () => {
+  const [isChangeName, setIsChangeName] = useState(false);
+  const googleSignIn = (nextLink) => {
+    console.log("googlesignin");
     signInWithPopup(auth, provider)
       .then(() => {
         if (!auth.currentUser.displayName) {
@@ -22,25 +27,22 @@ export const useUser = () => {
           navigate("/profile");
         } else {
           alert("ログインしました");
-          navigate("/list");
+          navigate(`${nextLink}`);
         }
       })
       .catch(() => alert("ログインに失敗しました"));
   };
-  const signIn = (email, password) => {
+  const signIn = (email, password, nextLink) => {
+    console.log("signin");
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user.uid);
-        if (!auth.currentUser.displayName) {
-          alert("ログインしました。ユーザーネームの登録をしてください");
-          navigate("/profile");
+      .then(() => {
+        alert("ログインしました");
+        if (user.displayName) {
+          navigate(`${nextLink}`);
         } else {
-          alert("ログインしました");
-          navigate("/list");
+          alert("ユーザーネームの登録をしてください");
+          navigate("/profile");
         }
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -49,56 +51,81 @@ export const useUser = () => {
       });
   };
   const signUp = (email, password) => {
+    console.log("signup");
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        console.log("signup");
-        alert("登録されました");
-        const user = userCredential.user;
-        console.log(user);
-        navigate("/signin");
-        // ...
+      .then(() => {
+        alert("登録されました。ユーザーネームの登録をしてください。");
+        // alert("ユーザーネームの登録をしてください");
+        navigate("/profile");
+        // if (user.displayName) {
+        //   navigate("/list");
+        // } else {
+        // }
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         alert(errorCode, errorMessage);
-        // ..
       });
   };
 
   const signOut = () => {
+    console.log("signout");
     auth
       .signOut()
       .then(() => {
-        alert("サインアウトされました");
+        alert("ログアウトしました");
         navigate("/signin");
       })
       .catch(() => alert("ログアウト失敗"));
   };
 
+  const updateUser = (NewuserName) => {
+    console.log("usernameupdate");
+    updateProfile(user, {
+      displayName: NewuserName,
+    })
+      .then(() => {
+        alert("ユーザー名が登録されました");
+        navigate("/list");
+      })
+      .catch((error) => {
+        alert("エラーが起きました");
+      });
+  };
+
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    console.log("getuser");
+    const getUser = () => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        setUserId(uid);
-        setUserName(user.displayName);
-        console.log("aa");
+        // setUserName(user.displayName);
+        setUserId(user.uid);
       } else {
-        // User is signed out
-        // ...
+        setUserId(undefined);
+        // setUserName(undefined);
       }
-    });
-  }, []);
+    };
+    getUser();
+  }, [isAuth]);
+
+  const getUserName = () => {
+    console.log("ggvav");
+    if (user) {
+      return user.displayName;
+    } else {
+      return;
+    }
+  };
+
   return {
     signUp,
     signIn,
     signOut,
+    updateUser,
     provider,
-    userName,
+    // userName,
     userId,
     googleSignIn,
+    getUserName,
   };
 };

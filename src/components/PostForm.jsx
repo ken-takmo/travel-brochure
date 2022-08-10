@@ -17,7 +17,6 @@ export const PostForm = () => {
   for (let i = 0; i < 47; i++) {
     options.push({ value: i, label: regions[i] });
   }
-
   return (
     <>
       {userId ? (
