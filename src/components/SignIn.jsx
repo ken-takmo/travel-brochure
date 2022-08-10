@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useUser } from "../parts/useUser";
-export const SingIn = () => {
+export const SignIn = () => {
+  const location = useLocation();
   const { signIn } = useUser();
   const { googleSignIn } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const nextLink = location.state?.from?.pathname || "/list";
   return (
     <main className="signin">
       <div className="email-signin">
@@ -25,7 +28,9 @@ export const SingIn = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <br />
-          <button onClick={() => signIn(email, password)}>ログイン</button>
+          <button onClick={() => signIn(email, password, nextLink)}>
+            ログイン
+          </button>
         </div>
       </div>
       <br />
@@ -33,7 +38,7 @@ export const SingIn = () => {
         <h2>Googleアカウントでログイン</h2>
         <br />
         <div className="signin-form">
-          <button onClick={googleSignIn}>ログイン</button>
+          <button onClick={() => googleSignIn(nextLink)}>ログイン</button>
         </div>
       </div>
     </main>

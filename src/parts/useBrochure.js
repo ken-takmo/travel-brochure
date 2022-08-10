@@ -98,7 +98,6 @@ export const useBrochure = (id) => {
         image: fileData[0].name,
         userId: userId,
       });
-      console.log(fileData[0].name);
       ImageUpload(fileData);
     } catch (error) {
       alert(error);

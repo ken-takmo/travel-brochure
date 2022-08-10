@@ -290,6 +290,7 @@ main {
 .good {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .good-button {
   height: 40px;
@@ -479,32 +480,35 @@ main {
   width: 90%;
 }
 .email-signin {
-  background-color: #dac9a6;
-  border-radius: 40px 40px;
+  background-color: #fff;
+  border-radius: 20px 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
   text-align: center;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 .google-signin {
-  background-color: #dac9a6;
-  border-radius: 40px 40px;
+  background-color: #fff;
+  border-radius: 20px 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
   text-align: center;
   margin-left: 30px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 .signin h2 {
   margin: 0;
-  background-color: #e2943b;
+  background-color: #5fa0ffdb;
+  font-size: 20px;
   flex: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 40px 40px 0 0;
+  border-radius: 20px 20px 0 0;
   color: #fff;
 }
 .signin-form {
@@ -514,19 +518,41 @@ main {
   justify-content: center;
 }
 
+.signin-form label {
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+  width: 80%;
+  text-align: left;
+  margin: 0 auto;
+}
+.signin-form input {
+  margin: 10px auto 20px;
+}
+
+.signin-form button {
+  background-color: dodgerblue;
+  border: dodgerblue 1px solid;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 600;
+  height: 30px;
+  width: 100px;
+}
 /* signup */
 .signup {
-  background-color: #dac9a6;
+  background-color: #ffffff;
   width: 90%;
   border-radius: 40px;
   display: flex;
   flex-direction: column;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 .signup h1 {
   color: #f4f5f7;
   font-family: "Tsukushi B Round Gothic";
   flex: 2;
-  background-color: #e2943b;
+  background-color: #ff5353;
   border-radius: 40px 40px 0 0;
   margin: 0;
   display: flex;
@@ -539,6 +565,17 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.signup-form label {
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+  width: 80%;
+  text-align: left;
+  margin: 0 auto;
+}
+.signup-form input {
+  margin: 10px auto 20px;
 }
 
 /* mypage */
