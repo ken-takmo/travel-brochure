@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { regions } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
 import { useUser } from "../parts/useUser";
+import { companionOption, regionOption } from "../utils/utils";
 
 export const PostForm = () => {
   const [destination, setDestination] = useState("");
@@ -13,10 +13,6 @@ export const PostForm = () => {
   const { postBrochure, isUploaded, loading } = useBrochure();
   const { userId } = useUser();
 
-  const options = [];
-  for (let i = 0; i < 47; i++) {
-    options.push({ value: i, label: regions[i] });
-  }
   return (
     <>
       {userId ? (
@@ -70,10 +66,7 @@ export const PostForm = () => {
                         onChange={(e) => setCompanion(e.target.value)}
                       >
                         <option value="">選択してください</option>
-                        <option value="0">ひとり</option>
-                        <option value="1">友人</option>
-                        <option value="2">恋人</option>
-                        <option value="3">家族</option>
+                        {companionOption()}
                       </select>
                       <label htmlFor="region">地域</label>
                       <select
@@ -83,13 +76,7 @@ export const PostForm = () => {
                         onChange={(e) => setRegion(e.target.value)}
                       >
                         <option value="">選択してください</option>
-                        {options.map((option) => {
-                          return (
-                            <option value={option.value} key={option.value}>
-                              {option.label}
-                            </option>
-                          );
-                        })}
+                        {regionOption()}
                       </select>
                     </div>
                     <br />

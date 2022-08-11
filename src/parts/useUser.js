@@ -37,11 +37,11 @@ export const useUser = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("ログインしました");
-        if (user.displayName) {
-          navigate(`${nextLink}`);
-        } else {
+        if (user.displayName === undefined) {
           alert("ユーザーネームの登録をしてください");
           navigate("/profile");
+        } else {
+          navigate(`${nextLink}`);
         }
       })
       .catch((error) => {
@@ -55,12 +55,7 @@ export const useUser = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("登録されました。ユーザーネームの登録をしてください。");
-        // alert("ユーザーネームの登録をしてください");
         navigate("/profile");
-        // if (user.displayName) {
-        //   navigate("/list");
-        // } else {
-        // }
       })
       .catch((error) => {
         const errorCode = error.code;

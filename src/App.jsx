@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       {loading ? (
-        <p>ローディング中</p>
+        <></>
       ) : (
         <>
           {error ? (
