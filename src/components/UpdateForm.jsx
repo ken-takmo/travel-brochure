@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { regionOption, companionOption } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
-import { useGetDetail } from "../parts/useGetDetail";
+import { useDetail } from "../parts/useDetail";
 import { useUser } from "../parts/useUser";
 export const UpdateForm = () => {
   const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
   const { updateBrochure } = useBrochure(brochureID);
-  const { detail } = useGetDetail(brochureID);
+  const { detail } = useDetail(brochureID);
   const [destination, setDestination] = useState("");
   const [theme, setTheme] = useState("");
   const [content, setContent] = useState("");

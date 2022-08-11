@@ -1,11 +1,8 @@
-import { auth, createUserWithEmailAndPassword } from "../database/db";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useUser } from "../parts/useUser";
 export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
-  const navigate = useNavigate();
   const { signUp } = useUser();
   return (
     <main className="signup">

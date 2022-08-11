@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteObject, ref } from "firebase/storage";
 import { storage } from "../database/db";
-export const useGetDetail = (id) => {
+export const useDetail = (id) => {
   const navigate = useNavigate();
   const [detail, setDetail] = useState({
     destination: "",
