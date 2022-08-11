@@ -53,7 +53,7 @@ export const Detail = () => {
               <button onClick={() => navigate(`/updateform/${brochureID}`)}>
                 編集
               </button>
-              <button onClick={() => navigate(-1)}>戻る</button>
+              <button onClick={() => navigate("/list")}>戻る</button>
               <button onClick={() => deleteBrochure(detail.image)}>削除</button>
             </>
           ) : (
