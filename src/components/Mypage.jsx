@@ -1,35 +1,9 @@
 import { useState, useEffect } from "react";
 import { db } from "../database/db";
-import { useUser } from "../parts/useUser";
 import { Getlist } from "../parts/list";
+import { useGetList } from "../parts/useGetList";
 export const Mypage = () => {
-  const { userId } = useUser();
-  const [myBrochures, setMyBrochures] = useState(undefined);
-  const results = [];
-  useEffect(() => {
-    const getMyBrochures = async () => {
-      try {
-        const docs = await db
-          .collection("trips")
-          .where("userId", "==", `${userId}`)
-          .get();
-        docs.forEach((doc) => {
-          results.push({
-            tripId: doc.id,
-            ...doc.data(),
-          });
-        });
-        if (results.length === 0) {
-          return;
-        } else {
-          setMyBrochures(results);
-        }
-      } catch (error) {
-        alert(error);
-      }
-    };
-    getMyBrochures();
-  }, [userId]);
+  const { myBrochures } = useGetList();
   return (
     <>
       {myBrochures ? (
