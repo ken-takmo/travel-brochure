@@ -7,24 +7,6 @@ export const SignUp = () => {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
   const { signUp } = useUser();
-  // const signUp = () => {
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then((userCredential) => {
-  //       // Signed in
-  //       console.log("signup");
-  //       alert("登録されました");
-  //       const user = userCredential.user;
-  //       console.log(user);
-  //       navigate("/signin");
-  //       // ...
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       alert(errorCode, errorMessage);
-  //       // ..
-  //     });
-  // };
   return (
     <main className="signup">
       <h1>新規登録</h1>

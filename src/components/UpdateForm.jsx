@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { regions, companions } from "../utils/utils";
+import { regionOption, companionOption } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
 import { useGetDetail } from "../parts/useGetDetail";
 import { useUser } from "../parts/useUser";
@@ -35,48 +35,6 @@ export const UpdateForm = () => {
       setUpdate(true);
     }
   }, [fileData]);
-
-  const companionOption = (data) => {
-    const companionOptions = [];
-    for (let i = 0; i < 4; i++) {
-      if (i == data) {
-        companionOptions.push(
-          <option key={i} value={i} defaultValue>
-            {companions[i]}
-          </option>
-        );
-      } else {
-        companionOptions.push(
-          <option key={i} value={i}>
-            {companions[i]}
-          </option>
-        );
-      }
-    }
-    return companionOptions;
-  };
-
-  const regionOption = (deta) => {
-    const regionOptions = [];
-    for (let i = 0; i < 47; i++) {
-      if (i == deta) {
-        regionOptions.push(
-          <option key={i} value={i} defaultValue>
-            {regions[i]}
-          </option>
-        );
-      } else {
-        regionOptions.push(
-          <option key={i} value={i}>
-            {regions[i]}
-          </option>
-        );
-      }
-    }
-    return regionOptions;
-  };
-  console.log(loading);
-  console.log(isUploaded);
   return (
     <>
       {loading ? (

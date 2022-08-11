@@ -49,4 +49,59 @@ const regions = [
 ];
 const companions = ["ひとり", "友人", "恋人", "家族"];
 
-export { regions, companions };
+const options = [];
+for (let i = 0; i < 47; i++) {
+  options.push({ value: i, label: regions[i] });
+}
+
+const companionOption = (data) => {
+  const companionOptions = [];
+  if (data) {
+    for (let i = 0; i < 4; i++) {
+      if (i == data) {
+        companionOptions.push(
+          <option key={i} value={i} defaultValue>
+            {companions[i]}
+          </option>
+        );
+      } else {
+        companionOptions.push(
+          <option key={i} value={i}>
+            {companions[i]}
+          </option>
+        );
+      }
+    }
+  } else {
+    for (let i = 0; i < 4; i++) {
+      companionOptions.push(
+        <option key={i} value={i}>
+          {companions[i]}
+        </option>
+      );
+    }
+  }
+  return companionOptions;
+};
+
+const regionOption = (deta) => {
+  const regionOptions = [];
+  for (let i = 0; i < 47; i++) {
+    if (i == deta) {
+      regionOptions.push(
+        <option key={i} value={i} defaultValue>
+          {regions[i]}
+        </option>
+      );
+    } else {
+      regionOptions.push(
+        <option key={i} value={i}>
+          {regions[i]}
+        </option>
+      );
+    }
+  }
+  return regionOptions;
+};
+
+export { regions, companions, options, companionOption, regionOption };
