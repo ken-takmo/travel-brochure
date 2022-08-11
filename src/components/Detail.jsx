@@ -2,13 +2,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { regions, companions } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
 import goodbutton from "../img/good.svg";
-import { useGetDetail } from "../parts/useGetDetail";
+import { useDetail } from "../parts/useDetail";
 import { useUser } from "../parts/useUser";
 export const Detail = () => {
   const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
-  const { detail, deleteBrochure } = useGetDetail(brochureID);
+  const { detail, deleteBrochure } = useDetail(brochureID);
   const { getImage } = useBrochure();
   const { userId } = useUser();
   return (
