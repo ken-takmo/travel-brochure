@@ -15,7 +15,6 @@ export const useUser = () => {
   const isAuth = useAuth();
   const user = auth.currentUser;
   const provider = new GoogleAuthProvider();
-  // const [userName, setUserName] = useState();
   const [userId, setUserId] = useState();
   const [isChangeName, setIsChangeName] = useState(false);
   const googleSignIn = (nextLink) => {
