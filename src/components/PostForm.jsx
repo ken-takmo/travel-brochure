@@ -93,9 +93,9 @@ export const PostForm = () => {
                     <button
                       onClick={() =>
                         postBrochure(
-                          destination,
-                          theme,
-                          content,
+                          destination.trim(),
+                          theme.trim(),
+                          content.trim(),
                           companion,
                           region,
                           fileData,
