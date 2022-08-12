@@ -8,6 +8,7 @@ import {
   deleteObject,
 } from "firebase/storage";
 import { storage } from "../database/db";
+import firebase from "firebase/compat/app";
 
 export const useBrochure = (id) => {
   const navigate = useNavigate();
@@ -97,6 +98,7 @@ export const useBrochure = (id) => {
         evaluation: 0,
         image: fileData[0].name,
         userId: userId,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
       ImageUpload(fileData);
     } catch (error) {

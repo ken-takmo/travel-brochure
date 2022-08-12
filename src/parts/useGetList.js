@@ -11,7 +11,10 @@ export const useGetList = () => {
       console.log("getallbrochure");
       const _trips = [];
       try {
-        const docs = await db.collection("trips").get();
+        const docs = await db
+          .collection("trips")
+          .orderBy("createdAt", "desc")
+          .get();
         docs.forEach((doc) => {
           _trips.push({
             tripId: doc.id,
@@ -34,6 +37,7 @@ export const useGetList = () => {
         const docs = await db
           .collection("trips")
           .where("userId", "==", `${userId}`)
+          .orderBy("createdAt", "desc")
           .get();
         docs.forEach((doc) => {
           results.push({
