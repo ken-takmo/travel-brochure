@@ -15,25 +15,33 @@ export const Menus = () => {
           >
             close
           </span>
-          <Link
-            to="/mypage"
-            onClick={() => {
-              setIsClick(false);
-            }}
-          >
-            マイページ
-          </Link>
-          <Link to="/profile" onClick={() => setIsClick(false)}>
-            ユーザー編集
-          </Link>
-          <p
-            onClick={() => {
-              signOut();
-              setIsClick(false);
-            }}
-          >
-            ログアウト
-          </p>
+          <ul>
+            <li>
+              <Link
+                to="/mypage"
+                onClick={() => {
+                  setIsClick(false);
+                }}
+              >
+                マイページ
+              </Link>
+            </li>
+            <li>
+              <Link to="/profile" onClick={() => setIsClick(false)}>
+                ユーザー編集
+              </Link>
+            </li>
+            <li>
+              <p
+                onClick={() => {
+                  signOut();
+                  setIsClick(false);
+                }}
+              >
+                ログアウト
+              </p>
+            </li>
+          </ul>
         </div>
       ) : (
         <span
