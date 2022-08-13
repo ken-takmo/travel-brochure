@@ -51,13 +51,21 @@ export const Detail = () => {
           <p>地域：{regions[detail.region]}</p>
         </div>
         <nav className="detail-data-links">
-          {isAuth.uid === detail.userId ? (
+          {isAuth ? (
             <>
-              <button onClick={() => navigate(`/updateform/${brochureID}`)}>
-                編集
-              </button>
-              <button onClick={() => navigate("/list")}>戻る</button>
-              <button onClick={() => deleteBrochure(detail.image)}>削除</button>
+              {isAuth.uid === detail.userId ? (
+                <>
+                  <button onClick={() => navigate(`/updateform/${brochureID}`)}>
+                    編集
+                  </button>
+                  <button onClick={() => navigate("/list")}>戻る</button>
+                  <button onClick={() => deleteBrochure(detail.image)}>
+                    削除
+                  </button>
+                </>
+              ) : (
+                <button onClick={() => navigate(-1)}>戻る</button>
+              )}
             </>
           ) : (
             <button onClick={() => navigate(-1)}>戻る</button>
