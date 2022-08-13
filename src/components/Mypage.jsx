@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
-import { db } from "../database/db";
 import { Getlist } from "../parts/list";
-import { useGetList } from "../parts/useGetList";
+import { useGetMyBrochures } from "../parts/useGetMyBrochures";
 export const Mypage = () => {
-  const { myBrochures } = useGetList();
+  const myBrochures = useGetMyBrochures();
   return (
     <>
       {myBrochures ? (

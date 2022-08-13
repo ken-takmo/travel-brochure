@@ -31,6 +31,7 @@ export const useBrochure = (id) => {
     deleteImage(preImage);
     ImageUpload(newFileData, update);
   };
+
   const deleteImage = (preImage) => {
     const storageRef = ref(storage, "image/" + preImage);
     deleteObject(storageRef)
@@ -74,7 +75,7 @@ export const useBrochure = (id) => {
     companion,
     region,
     fileData,
-    userId
+    uid
   ) => {
     if (
       !destination ||
@@ -83,7 +84,7 @@ export const useBrochure = (id) => {
       !companion ||
       !region ||
       !fileData ||
-      !userId
+      !uid
     ) {
       alert("全ての項目を入力してください");
       return;
@@ -97,7 +98,7 @@ export const useBrochure = (id) => {
         region: region,
         evaluation: 0,
         image: fileData[0].name,
-        userId: userId,
+        userId: uid,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
       ImageUpload(fileData);
