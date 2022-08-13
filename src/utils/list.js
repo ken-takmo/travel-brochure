@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { companions, regions } from "../utils/utils";
+import { companions, regions } from "./utils";
 import background from "../img/map.jpg";
 
 export const Getlist = (props) => {
@@ -25,8 +25,8 @@ export const Getlist = (props) => {
               </div>
             </div>
             <div className="trip-details  trip-data-child">
-              <small>いいね！</small>
-              <p className="detail">{trip.evaluation}</p>
+              {/* <small>いいね！</small>
+              <p className="detail">{trip.evaluation}</p> */}
               <small>誰と</small>
               <p className="detail">{companions[trip.companion]}</p>
               <small>地域</small>

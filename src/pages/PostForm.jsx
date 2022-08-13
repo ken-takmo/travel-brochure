@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useBrochure } from "../parts/useBrochure";
+import { useBrochure } from "../hooks/useBrochure";
 import { companionOption, regionOption } from "../utils/utils";
 import { useAuth } from "../providers/AuthContext";
 

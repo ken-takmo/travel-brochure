@@ -18,12 +18,12 @@ export const useUser = () => {
     console.log("googlesignin");
     signInWithPopup(auth, provider)
       .then(() => {
-        if (!auth.currentUser.displayName) {
-          alert("ログインしました。ユーザーネームの登録をしてください");
-          navigate("/profile");
-        } else {
+        if (auth.currentUser.displayName) {
           alert("ログインしました");
           navigate(`${nextLink}`);
+        } else {
+          alert("ログインしました。ユーザーネームの登録をしてください");
+          navigate("/profile");
         }
       })
       .catch(() => alert("ログインに失敗しました"));
@@ -33,7 +33,7 @@ export const useUser = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("ログインしました");
-        if (isAuth.displayName) {
+        if (auth.currentUser.displayName) {
           navigate(`${nextLink}`);
         } else {
           alert("ユーザーネームの登録をしてください");
@@ -90,7 +90,7 @@ export const useUser = () => {
     signIn,
     signOut,
     updateUser,
-    provider,
+    // provider,
     googleSignIn,
   };
 };

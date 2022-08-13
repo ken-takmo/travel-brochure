@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useUser } from "./useUser";
+import { useUser } from "../hooks/useUser";
 export const Menus = () => {
   const { signOut } = useUser();
   const [isClick, setIsClick] = useState(false);

@@ -1,10 +1,10 @@
-import { Getlist } from "../parts/list";
-import { useGetMyBrochures } from "../parts/useGetMyBrochures";
+import { Getlist } from "../utils/list";
+import { useGetMyBrochures } from "../hooks/useGetMyBrochures";
 export const Mypage = () => {
   const myBrochures = useGetMyBrochures();
   return (
     <>
-      {myBrochures ? (
+      {!myBrochures.length == 0 ? (
         <main>
           <h1>マイ投稿</h1>
           {<Getlist deta={myBrochures} />}
