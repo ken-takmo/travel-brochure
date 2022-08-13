@@ -1,17 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Menus } from "../parts/Menus";
-import { useUser } from "../parts/useUser";
 import { useAuth } from "../providers/AuthContext";
 export const Header = () => {
-  const { getUserName } = useUser();
-  const userName = getUserName();
   const [isAuth] = useAuth();
   const navigate = useNavigate();
   return (
     <>
       {isAuth ? (
         <header>
-          {userName ? (
+          {isAuth.displayName ? (
             <>
               <div className="header-top">
                 <h1 onClick={() => navigate("/")}>みんなのしおり</h1>
@@ -20,7 +17,7 @@ export const Header = () => {
                     <span className="material-symbols-outlined">
                       account_circle
                     </span>
-                    <p>{userName}</p>
+                    <p>{isAuth.displayName}</p>
                   </div>
                   <Menus />
                 </div>

@@ -1,8 +1,8 @@
 import { Getlist } from "../parts/list";
-import { useGetList } from "../parts/useGetList";
+import { useGetAll } from "../parts/useGetAll";
 
 export const List = () => {
-  const { allBrochure } = useGetList();
+  const { allBrochure } = useGetAll();
 
   return (
     <main>
