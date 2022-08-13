@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useUser } from "../parts/useUser";
+import { useUser } from "../hooks/useUser";
 export const SignIn = () => {
   const location = useLocation();
   const { signIn } = useUser();

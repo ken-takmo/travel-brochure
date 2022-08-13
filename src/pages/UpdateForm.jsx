@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { regionOption, companionOption } from "../utils/utils";
-import { useBrochure } from "../parts/useBrochure";
-import { useDetail } from "../parts/useDetail";
+import { useBrochure } from "../hooks/useBrochure";
+import { useDetail } from "../hooks/useDetail";
 import { useAuth } from "../providers/AuthContext";
 export const UpdateForm = () => {
   const navigate = useNavigate();

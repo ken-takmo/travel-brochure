@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Menus } from "../parts/Menus";
+import { Menus } from "../components/Menus";
 import { useAuth } from "../providers/AuthContext";
 export const Header = () => {
   const [isAuth] = useAuth();

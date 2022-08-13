@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useUser } from "../parts/useUser";
+import { useUser } from "../hooks/useUser";
 export const Profile = () => {
   const [newUserName, setNewUserName] = useState();
   const { updateUser } = useUser();

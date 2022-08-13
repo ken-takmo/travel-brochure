@@ -1,5 +1,5 @@
-import { Getlist } from "../parts/list";
-import { useGetAll } from "../parts/useGetAll";
+import { Getlist } from "../utils/list";
+import { useGetAll } from "../hooks/useGetAll";
 
 export const List = () => {
   const { allBrochure } = useGetAll();
