@@ -7,16 +7,13 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../database/db";
-import { useState, useEffect } from "react";
 import { useAuth } from "../providers/AuthContext";
 
 export const useUser = () => {
   const navigate = useNavigate();
-  const isAuth = useAuth();
-  const user = auth.currentUser;
+  const [isAuth] = useAuth();
   const provider = new GoogleAuthProvider();
-  const [userId, setUserId] = useState();
-  const [isChangeName, setIsChangeName] = useState(false);
+
   const googleSignIn = (nextLink) => {
     console.log("googlesignin");
     signInWithPopup(auth, provider)
@@ -36,11 +33,11 @@ export const useUser = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("ログインしました");
-        if (user.displayName === undefined) {
+        if (isAuth.displayName) {
+          navigate(`${nextLink}`);
+        } else {
           alert("ユーザーネームの登録をしてください");
           navigate("/profile");
-        } else {
-          navigate(`${nextLink}`);
         }
       })
       .catch((error) => {
@@ -76,7 +73,7 @@ export const useUser = () => {
 
   const updateUser = (NewuserName) => {
     console.log("usernameupdate");
-    updateProfile(user, {
+    updateProfile(isAuth, {
       displayName: NewuserName,
     })
       .then(() => {
@@ -88,38 +85,12 @@ export const useUser = () => {
       });
   };
 
-  useEffect(() => {
-    console.log("getuser");
-    const getUser = () => {
-      if (user) {
-        // setUserName(user.displayName);
-        setUserId(user.uid);
-      } else {
-        setUserId(undefined);
-        // setUserName(undefined);
-      }
-    };
-    getUser();
-  }, [isAuth]);
-
-  const getUserName = () => {
-    console.log("ggvav");
-    if (user) {
-      return user.displayName;
-    } else {
-      return;
-    }
-  };
-
   return {
     signUp,
     signIn,
     signOut,
     updateUser,
     provider,
-    // userName,
-    userId,
     googleSignIn,
-    getUserName,
   };
 };

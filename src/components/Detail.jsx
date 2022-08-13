@@ -3,14 +3,14 @@ import { regions, companions } from "../utils/utils";
 import { useBrochure } from "../parts/useBrochure";
 import goodbutton from "../img/good.svg";
 import { useDetail } from "../parts/useDetail";
-import { useUser } from "../parts/useUser";
+import { useAuth } from "../providers/AuthContext";
 export const Detail = () => {
   const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
   const { detail, deleteBrochure } = useDetail(brochureID);
   const { getImage } = useBrochure();
-  const { userId } = useUser();
+  const [isAuth] = useAuth();
   return (
     <main className="detail">
       <h1>しおり詳細</h1>
@@ -28,27 +28,29 @@ export const Detail = () => {
         </div>
         <hr />
         <div className="detail-data-detail">
-          <div className="good">
-            <p>いいね！：{detail.evaluation}</p>
-            <img
-              src={goodbutton}
-              alt="いいねぼたん"
-              className="good-button"
-              // className={
-              //   isGood ? "good-button good" : "good-button dis-good"
-              // }
-              // onClick={() =>
-              //   isGood
-              //     ? reduceEvaluation(brochureID, detail.evaluation)
-              //     : addEvaluation(brochureID, detail.evaluation)
-              // }
-            />
-          </div>
+          {isAuth ? (
+            <div className="good">
+              <p>いいね！：{detail.evaluation}</p>
+              <img
+                src={goodbutton}
+                alt="いいねぼたん"
+                className="good-button"
+                // className={isGood ? "good-button good" : "good-button dis-good"}
+                // onClick={() =>
+                //   isGood
+                //     ? reduceEvaluation(brochureID, detail.evaluation)
+                //     : addEvaluation(brochureID, detail.evaluation)
+                // }
+              />
+            </div>
+          ) : (
+            <></>
+          )}
           <p>誰と：{companions[detail.companion]}</p>
           <p>地域：{regions[detail.region]}</p>
         </div>
         <nav className="detail-data-links">
-          {userId === detail.userId ? (
+          {isAuth.uid === detail.userId ? (
             <>
               <button onClick={() => navigate(`/updateform/${brochureID}`)}>
                 編集
