@@ -27,8 +27,8 @@ export const PostForm = () => {
             </div>
           ) : (
             <main className="post-form">
-              <h1>投稿フォーム</h1>
               <div className="forms">
+                <h1>投稿フォーム</h1>
                 <label htmlFor="destination">旅行先</label>
                 <input
                   type="text"
