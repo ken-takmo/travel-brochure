@@ -51,8 +51,8 @@ export const UpdateForm = () => {
             <main className="update-form">
               {detail.userId === isAuth.uid ? (
                 <>
-                  <h1>しおり編集</h1>
                   <div className="forms">
+                    <h1>しおり編集</h1>
                     <label htmlFor="destination">旅行先</label>
                     <input
                       type="text"

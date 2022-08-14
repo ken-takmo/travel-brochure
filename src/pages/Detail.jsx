@@ -4,6 +4,7 @@ import { useBrochure } from "../hooks/useBrochure";
 import goodbutton from "../img/good.svg";
 import { useDetail } from "../hooks/useDetail";
 import { useAuth } from "../providers/AuthContext";
+import bordImage from "../img/bord.jpg";
 // import { useGood } from "../parts/useGood";
 export const Detail = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export const Detail = () => {
   const [isAuth] = useAuth();
   // const { addEvaluation } = useGood(brochureID, detail.evaluation, isAuth.uid);
   return (
+    // <main className="detail" style={{ backgroundImage: `url(${bordImage})` }}>
     <main className="detail">
       <h1>しおり詳細</h1>
       <div className="detail-data" key={brochureID}>
