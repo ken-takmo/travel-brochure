@@ -6,7 +6,7 @@ export const Profile = () => {
   return (
     <main className="profile">
       <div className="forms">
-        <h1>ユーザーネームの変更</h1>
+        <h2>ユーザーネームの変更</h2>
         <div className="profile-form">
           <label htmlFor="username">新しいユーザーネーム</label>
           <input

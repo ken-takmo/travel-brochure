@@ -17,18 +17,21 @@ export const Detail = () => {
   return (
     // <main className="detail" style={{ backgroundImage: `url(${bordImage})` }}>
     <main className="detail">
-      <h1>しおり詳細</h1>
       <div className="detail-data" key={brochureID}>
         <div className="detail-data-header">
           <h3>{detail.destination}</h3>
         </div>
         <hr />
         <div className="detail-data-main">
-          <p className="detail-theme">旅行テーマ：{detail.theme}</p>
-          <p className="detail-content">感想：{detail.content}</p>
-          {detail.image && (
-            <div className="image">{getImage(detail.image)}</div>
-          )}
+          <div className="image">{getImage(detail.image)}</div>
+          <div className="detail-theme">
+            <h3>テーマ</h3>
+            <p>{detail.theme}</p>
+          </div>
+          <div className="detail-content">
+            <h3>内容</h3>
+            <p>{detail.content}</p>
+          </div>
         </div>
         <hr />
         <div className="detail-data-detail">
