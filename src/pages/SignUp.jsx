@@ -7,7 +7,7 @@ export const SignUp = () => {
   return (
     <main className="signup">
       <div className="forms">
-        <h1>新規登録</h1>
+        <h2>新規登録</h2>
         <div className="signup-form">
           <label htmlFor="email">メールアドレス</label>
           <input

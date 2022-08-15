@@ -11,7 +11,11 @@ export const Header = () => {
           {isAuth.displayName ? (
             <>
               <div className="header-top">
-                <h1 onClick={() => navigate("/")}>みんなのしおり</h1>
+                <h1 onClick={() => navigate("/")}>
+                  みんなのしおり
+                  <span className="material-symbols-outlined">luggage</span>
+                </h1>
+
                 <div className="user-info">
                   <div className="user">
                     <span className="material-symbols-outlined">
@@ -22,6 +26,7 @@ export const Header = () => {
                   <Menus />
                 </div>
               </div>
+              <hr />
               <div className="header-bottom">
                 <ul>
                   <li>
@@ -36,23 +41,31 @@ export const Header = () => {
                   </li>
                 </ul>
               </div>
+              <hr />
             </>
           ) : (
             <>
               <div className="header">
-                <h1 onClick={() => navigate("/")}>みんなのしおり</h1>
+                <h1 onClick={() => navigate("/")}>
+                  みんなのしおり
+                  <span className="material-symbols-outlined">luggage</span>
+                </h1>
                 <div className="require-named">
                   <Link to="/profile">ユーザー名の登録をしてください</Link>
                   <Menus />
                 </div>
               </div>
+              <hr />
             </>
           )}
         </header>
       ) : (
         <header>
           <div className="header">
-            <h1 onClick={() => navigate("/")}>みんなのしおり</h1>
+            <h1 onClick={() => navigate("/")}>
+              みんなのしおり
+              <span className="material-symbols-outlined">luggage</span>
+            </h1>
             <ul className="user-auth">
               <li>
                 <Link to="/signup" className="header-link">
@@ -71,6 +84,7 @@ export const Header = () => {
               </li>
             </ul>
           </div>
+          <hr />
         </header>
       )}
     </>

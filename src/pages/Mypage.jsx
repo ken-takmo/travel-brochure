@@ -5,7 +5,7 @@ export const Mypage = () => {
   return (
     <>
       {!myBrochures.length == 0 ? (
-        <main>
+        <main className="mypage">
           <h1>マイ投稿</h1>
           {<Getlist deta={myBrochures} />}
         </main>
