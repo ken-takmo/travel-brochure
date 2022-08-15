@@ -6,8 +6,8 @@ export const List = () => {
   const { allBrochure } = useGetAll();
 
   return (
-    <main className="list" style={{ backgroundImage: `url(${skyImage})` }}>
-      <h1>しおり一覧</h1>
+    <main className="list">
+      <h2>一覧</h2>
       {<Getlist deta={allBrochure} />}
     </main>
   );

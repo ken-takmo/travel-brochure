@@ -1,37 +1,39 @@
 import { useNavigate } from "react-router-dom";
 import { companions, regions } from "./utils";
 import background from "../img/map.jpg";
+import { useBrochure } from "../hooks/useBrochure";
 
 export const Getlist = (props) => {
   const navigate = useNavigate();
+  const { getImage } = useBrochure();
   return (
     <div className="trip-datas">
-      {props.deta.map((trip) => {
+      {props.deta.map((deta) => {
         return (
           <div
             className="trip-data"
-            key={trip.tripId}
-            onClick={() => navigate(`/detail/${trip.tripId}`)}
+            key={deta.tripId}
+            onClick={() => navigate(`/detail/${deta.tripId}`)}
           >
             <div className="trip-data-main">
-              <div className="trip-theme trip-data-child">
-                <p>{trip.theme}</p>
-              </div>
               <div
-                className="trip-destination trip-data-child"
-                style={{ backgroundImage: `url(${background})` }}
+                className="trip-theme"
+                // style={{ backgroundImage: `url(${background})` }}
               >
-                <p>{trip.destination}</p>
+                <p>{deta.theme}</p>
+              </div>
+              <div className="trip-destination">
+                <p>{deta.destination}</p>
               </div>
             </div>
-            <div className="trip-details  trip-data-child">
-              {/* <small>いいね！</small>
-              <p className="detail">{trip.evaluation}</p> */}
+            {/* <div className="trip-details">
+              <small>いいね！</small>
+              <p className="detail">{deta.evaluation}</p>
               <small>誰と</small>
-              <p className="detail">{companions[trip.companion]}</p>
+              <p className="detail">{companions[deta.companion]}</p>
               <small>地域</small>
-              <p className="detail">{regions[trip.region]}</p>
-            </div>
+              <p className="detail">{regions[deta.region]}</p>
+            </div> */}
           </div>
         );
       })}
