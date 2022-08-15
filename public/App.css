@@ -796,13 +796,13 @@ footer {
 
 @media screen and (min-width: 481px) and (max-width: 840px) {
   p {
-    font-size: 30px;
+    font-size: 3vw;
   }
   a {
-    font-size: 20px;
+    font-size: 2vw;
   }
   .material-symbols-outlined {
-    font-size: 60px;
+    font-size: 5vw;
     margin: 0;
   }
   .header {
