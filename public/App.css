@@ -377,13 +377,6 @@ main {
   margin: 10px auto 20px;
 }
 
-.trip-datas {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
-
 /* list */
 
 .list {
@@ -395,18 +388,33 @@ main {
   font-family: "Tsukushi B Round Gothic";
   color: #2196f3;
 }
+.trip-datas {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  min-height: 100vh;
+  flex-wrap: wrap;
+  width: 90vw;
+  margin: auto;
+}
 .trip-data {
   cursor: pointer;
   transition: opacity 1s;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
-  width: 80vw;
-  height: 20vh;
+  width: 400px;
+  height: 400px;
   border-radius: 20px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 
+.trip-data:not(:first-child) {
+  margin-left: 2vw;
+}
+.trip-data:nth-of-type(4n) {
+  margin-left: 0;
+}
 .trip-data p {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -430,7 +438,7 @@ main {
   height: 70%;
   display: flex;
   flex-direction: column;
-  border-radius: 20px;
+  border-radius: 0 0 20px 20px;
   border: 5px solid;
 }
 
@@ -488,6 +496,10 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.list-image {
+  height: 300px;
 }
 
 /* detail */

@@ -15,7 +15,6 @@ export const Detail = () => {
   const [isAuth] = useAuth();
   // const { addEvaluation } = useGood(brochureID, detail.evaluation, isAuth.uid);
   return (
-    // <main className="detail" style={{ backgroundImage: `url(${bordImage})` }}>
     <main className="detail">
       <div className="detail-data" key={brochureID}>
         <div className="detail-data-header">
