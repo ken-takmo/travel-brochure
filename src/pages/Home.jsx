@@ -5,7 +5,6 @@ export const Home = () => {
   const navigate = useNavigate();
   return (
     <main className="home">
-      {/* <h1>旅のしおり共有</h1> */}
       <div className="app-description">
         <img src={bookmarkimage} alt="説明1" className="description-img" />
         <div className="descriptions">

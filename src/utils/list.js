@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { companions, regions } from "./utils";
 import background from "../img/map.jpg";
 import { useBrochure } from "../hooks/useBrochure";
+import { Image } from "../components/Image";
 
 export const Getlist = (props) => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export const Getlist = (props) => {
             key={deta.tripId}
             onClick={() => navigate(`/detail/${deta.tripId}`)}
           >
+            <Image url={deta.image} />
             <div className="trip-data-main">
               <div
                 className="trip-theme"
