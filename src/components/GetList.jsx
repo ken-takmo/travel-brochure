@@ -1,12 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { companions, regions } from "./utils";
-import background from "../img/map.jpg";
-import { useBrochure } from "../hooks/useBrochure";
-import { Image } from "../components/Image";
+import { companions, regions } from "../utils/utils";
+import { Image } from "./Image";
 
-export const Getlist = (props) => {
+export const GetList = (props) => {
   const navigate = useNavigate();
-  const { getImage } = useBrochure();
   return (
     <div className="trip-datas">
       {props.deta.map((deta) => {
@@ -18,10 +15,7 @@ export const Getlist = (props) => {
           >
             <Image url={deta.image} />
             <div className="trip-data-main">
-              <div
-                className="trip-theme"
-                // style={{ backgroundImage: `url(${background})` }}
-              >
+              <div className="trip-theme">
                 <p>{deta.theme}</p>
               </div>
               <div className="trip-destination">

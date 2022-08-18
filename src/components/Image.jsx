@@ -20,12 +20,11 @@ export const Image = (props) => {
 
   if (loading === null) {
     return (
-      <div class="image-loading">
+      <div className="image-loading">
         <p>Loading...</p>
       </div>
     );
   } else {
-    // return <img className="list-image" src={brochureImage} alt="" />;
     return <img src={brochureImage} alt="" />;
   }
 };

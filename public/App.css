@@ -42,7 +42,7 @@ hr {
   display: flex;
   flex-direction: column;
   border-radius: 40px;
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.05);
 }
 
 .forms > * {
@@ -334,7 +334,7 @@ main {
   transform: translate(-50%, -50%);
 }
 .descriptions p {
-  color: rgb(0 143 255);
+  color: rgb(0 0 0);
 }
 /* signup */
 .signup {
@@ -402,7 +402,6 @@ main {
   height: calc(90vw / 3);
   border: 1px solid;
   border-radius: 20px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 
 .trip-data:not(:first-child) {
@@ -536,7 +535,6 @@ main {
   margin: auto;
   width: 50vw;
   outline: 1px solid black;
-  box-shadow: 10px 10px 10px rgb(0 0 0 / 40%);
 }
 .detail-data a {
   color: rgb(188, 142, 142);
@@ -559,7 +557,7 @@ main {
 .image {
   width: 100%;
 }
-.image > img {
+.image img {
   width: 100%;
   object-fit: cover;
 }
@@ -653,7 +651,7 @@ main {
   display: flex;
   flex-direction: column;
   text-align: center;
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.05);
 }
 
 .google-signin {
@@ -664,7 +662,7 @@ main {
   flex-direction: column;
   text-align: center;
   margin-left: 30px;
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.05);
 }
 
 .signin h2 {
