@@ -4,6 +4,7 @@ import { regionOption, companionOption } from "../utils/utils";
 import { useBrochure } from "../hooks/useBrochure";
 import { useDetail } from "../hooks/useDetail";
 import { useAuth } from "../providers/AuthContext";
+import { Image } from "../components/Image";
 export const UpdateForm = () => {
   const navigate = useNavigate();
   const params = useParams();
@@ -19,7 +20,7 @@ export const UpdateForm = () => {
   const [fileData, setFileData] = useState("");
   const [isUpdate, setUpdate] = useState(false);
   const [isAuth] = useAuth();
-  const { getImage, isUploaded, loading } = useBrochure();
+  const { isUploaded, loading } = useBrochure();
 
   useEffect(() => {
     setDestination(detail.destination);
@@ -100,9 +101,7 @@ export const UpdateForm = () => {
                       </select>
                     </div>
                     <br />
-                    {detail.image && (
-                      <div className="image">{getImage(detail.image)}</div>
-                    )}
+                    <div className="image">{<Image url={detail.image} />}</div>
                     <label htmlFor="image">画像(変更ない場合は未入力)</label>
                     <input
                       type="file"

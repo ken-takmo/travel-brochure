@@ -1,12 +1,7 @@
 import { db } from "../database/db";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-  deleteObject,
-} from "firebase/storage";
+import { ref, uploadBytesResumable, deleteObject } from "firebase/storage";
 import { storage } from "../database/db";
 import firebase from "firebase/compat/app";
 
@@ -14,18 +9,6 @@ export const useBrochure = (id) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
-
-  const getImage = (url) => {
-    getDownloadURL(ref(storage, `image/${url}`))
-      .then((res) => {
-        setImageUrl(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    return <img src={imageUrl} alt="取得画像"></img>;
-  };
 
   const updateImage = (preImage, newFileData, update) => {
     deleteImage(preImage);
@@ -154,6 +137,5 @@ export const useBrochure = (id) => {
     loading,
     postBrochure,
     updateBrochure,
-    getImage,
   };
 };
