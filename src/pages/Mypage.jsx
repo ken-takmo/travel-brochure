@@ -7,7 +7,11 @@ export const Mypage = () => {
       {!myBrochures.length == 0 ? (
         <main className="mypage">
           <h1>マイ投稿</h1>
-          {<Getlist deta={myBrochures} />}
+          {
+            <div className="list-image">
+              <Getlist deta={myBrochures} />
+            </div>
+          }
         </main>
       ) : (
         <div className="no-mybrochures">

@@ -1,17 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { regions, companions } from "../utils/utils";
-import { useBrochure } from "../hooks/useBrochure";
-import goodbutton from "../img/good.svg";
+// import goodbutton from "../img/good.svg";
 import { useDetail } from "../hooks/useDetail";
 import { useAuth } from "../providers/AuthContext";
-import bordImage from "../img/bord.jpg";
+import { Image } from "../components/Image";
 // import { useGood } from "../parts/useGood";
 export const Detail = () => {
   const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
   const { detail, deleteBrochure } = useDetail(brochureID);
-  const { getImage } = useBrochure();
   const [isAuth] = useAuth();
   // const { addEvaluation } = useGood(brochureID, detail.evaluation, isAuth.uid);
   return (
@@ -22,7 +20,9 @@ export const Detail = () => {
         </div>
         <hr />
         <div className="detail-data-main">
-          <div className="image">{getImage(detail.image)}</div>
+          <div className="image">
+            <Image url={detail.image} />
+          </div>
           <div className="detail-theme">
             <h3>テーマ</h3>
             <p>{detail.theme}</p>
