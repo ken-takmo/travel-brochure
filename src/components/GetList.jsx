@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { companions, regions } from "../utils/utils";
 import { Image } from "./Image";
 
-export const Getlist = (props) => {
+export const GetList = (props) => {
   const navigate = useNavigate();
   return (
     <div className="trip-datas">

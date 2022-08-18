@@ -20,7 +20,7 @@ export const Image = (props) => {
 
   if (loading === null) {
     return (
-      <div class="image-loading">
+      <div className="image-loading">
         <p>Loading...</p>
       </div>
     );

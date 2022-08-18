@@ -1,4 +1,4 @@
-import { Getlist } from "../components/Getist";
+import { GetList } from "../components/GetList";
 import { useGetAll } from "../hooks/useGetAll";
 
 export const List = () => {
@@ -7,7 +7,7 @@ export const List = () => {
   return (
     <main className="list">
       <h2>一覧</h2>
-      <div className="list-image">{<Getlist deta={allBrochure} />}</div>
+      <div className="list-image">{<GetList deta={allBrochure} />}</div>
     </main>
   );
 };
