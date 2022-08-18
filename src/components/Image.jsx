@@ -25,7 +25,6 @@ export const Image = (props) => {
       </div>
     );
   } else {
-    // return <img className="list-image" src={brochureImage} alt="" />;
     return <img src={brochureImage} alt="" />;
   }
 };

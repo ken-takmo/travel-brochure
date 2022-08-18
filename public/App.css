@@ -334,7 +334,7 @@ main {
   transform: translate(-50%, -50%);
 }
 .descriptions p {
-  color: rgb(0 143 255);
+  color: rgb(0 0 0);
 }
 /* signup */
 .signup {
@@ -559,7 +559,7 @@ main {
 .image {
   width: 100%;
 }
-.image > img {
+.image img {
   width: 100%;
   object-fit: cover;
 }

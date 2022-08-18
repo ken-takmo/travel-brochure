@@ -1,4 +1,4 @@
-import { Getlist } from "../utils/list";
+import { Getlist } from "../components/Getist";
 import { useGetAll } from "../hooks/useGetAll";
 
 export const List = () => {

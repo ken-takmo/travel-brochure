@@ -1,4 +1,4 @@
-import { Getlist } from "../utils/list";
+import { Getlist } from "../components/Getist";
 import { useGetMyBrochures } from "../hooks/useGetMyBrochures";
 export const Mypage = () => {
   const myBrochures = useGetMyBrochures();
