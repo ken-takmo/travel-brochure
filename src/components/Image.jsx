@@ -5,10 +5,12 @@ import { storage } from "../database/db";
 export const Image = (props) => {
   const url = props.url;
   const [brochureImage, setBrochureImage] = useState();
+  const [loading, setLoading] = useState(null);
 
   useEffect(() => {
     getDownloadURL(ref(storage, `image/${url}`))
       .then((res) => {
+        setLoading(true);
         setBrochureImage(res);
       })
       .catch((err) => {
@@ -16,5 +18,14 @@ export const Image = (props) => {
       });
   }, [url]);
 
-  return <img className="list-image" src={brochureImage} alt="" />;
+  if (loading === null) {
+    return (
+      <div class="image-loading">
+        <p>Loading...</p>
+      </div>
+    );
+  } else {
+    // return <img className="list-image" src={brochureImage} alt="" />;
+    return <img src={brochureImage} alt="" />;
+  }
 };
