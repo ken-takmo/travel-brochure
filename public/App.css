@@ -383,10 +383,10 @@ main {
 .list h2 {
   font-family: "Tsukushi B Round Gothic";
   color: #2196f3;
+  font-size: 30px;
 }
 .trip-datas {
   display: flex;
-  align-items: center;
   min-height: 100vh;
   flex-wrap: wrap;
   width: 90vw;
