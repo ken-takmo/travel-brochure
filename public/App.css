@@ -486,6 +486,11 @@ main {
   width: 40px;
   cursor: pointer;
 }
+.good-cancel-button {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
 .trip-details p {
   text-align: center;
   display: flex;

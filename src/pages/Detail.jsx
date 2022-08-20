@@ -1,17 +1,22 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { regions, companions } from "../utils/utils";
-// import goodbutton from "../img/good.svg";
+import goodbutton from "../img/good.svg";
 import { useDetail } from "../hooks/useDetail";
 import { useAuth } from "../providers/AuthContext";
 import { Image } from "../components/Image";
-// import { useGood } from "../parts/useGood";
+import { useGood } from "../hooks/useGood";
 export const Detail = () => {
   const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
   const { detail, deleteBrochure } = useDetail(brochureID);
   const [isAuth] = useAuth();
-  // const { addEvaluation } = useGood(brochureID, detail.evaluation, isAuth.uid);
+  const { addEvaluation, goodUsers, reduceEvaluation } = useGood(brochureID);
+  const filterUser = goodUsers.find((goodUser) => goodUser.user == isAuth.uid);
+  const hasGoodUsers = goodUsers.map((goodUser) => {
+    return goodUser.user;
+  });
+  const isGood = hasGoodUsers.includes(isAuth.uid);
   return (
     <main className="detail">
       <div className="detail-data" key={brochureID}>
@@ -34,23 +39,36 @@ export const Detail = () => {
         </div>
         <hr />
         <div className="detail-data-detail">
-          {/* {isAuth ? (
+          {isAuth ? (
             <div className="good">
               <p>いいね！：{detail.evaluation}</p>
-              <img
-                src={goodbutton}
-                alt="いいねぼたん"
-                className={isGood ? "good-button good" : "good-button dis-good"}
-                onClick={() =>
-                  isGood
-                    ? reduceEvaluation(brochureID, detail.evaluation)
-                    : addEvaluation(brochureID, detail.evaluation)
-                }
-              />
             </div>
           ) : (
             <></>
-          )} */}
+          )}
+          {isGood ? (
+            <>
+              <p>もういいねしてるよ</p>
+              <img
+                src={goodbutton}
+                alt="いいねぼたん"
+                className="good-cancel-button"
+                onClick={() =>
+                  reduceEvaluation(detail.evaluation, filterUser.goodUserId)
+                }
+              />
+            </>
+          ) : (
+            <>
+              <p>まだいいねしてない</p>
+              <img
+                src={goodbutton}
+                alt="いいねぼたん"
+                className="good-button"
+                onClick={() => addEvaluation(detail.evaluation, isAuth.uid)}
+              />
+            </>
+          )}
           <p>誰と：{companions[detail.companion]}</p>
           <p>地域：{regions[detail.region]}</p>
         </div>
