@@ -29,7 +29,6 @@ export const useUser = () => {
       .catch(() => alert("ログインに失敗しました"));
   };
   const signIn = (email, password, nextLink) => {
-    console.log("signin");
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("ログインしました");
@@ -61,7 +60,6 @@ export const useUser = () => {
   };
 
   const signOut = () => {
-    console.log("signout");
     auth
       .signOut()
       .then(() => {
@@ -72,7 +70,6 @@ export const useUser = () => {
   };
 
   const updateUser = (NewuserName) => {
-    console.log("usernameupdate");
     updateProfile(isAuth, {
       displayName: NewuserName,
     })
