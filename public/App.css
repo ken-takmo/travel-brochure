@@ -486,6 +486,11 @@ main {
   width: 40px;
   cursor: pointer;
 }
+.good-cancel-button {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
 .trip-details p {
   text-align: center;
   display: flex;
@@ -553,6 +558,14 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.favorite {
+  color: black;
+  cursor: pointer;
+}
+.favorited {
+  color: pink;
+  cursor: pointer;
 }
 .image {
   width: 100%;
