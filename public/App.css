@@ -559,6 +559,14 @@ main {
   justify-content: center;
   align-items: center;
 }
+.favorite {
+  color: black;
+  cursor: pointer;
+}
+.favorited {
+  color: pink;
+  cursor: pointer;
+}
 .image {
   width: 100%;
 }
