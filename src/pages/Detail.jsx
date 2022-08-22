@@ -1,22 +1,21 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { regions, companions } from "../utils/utils";
-import goodbutton from "../img/good.svg";
 import { useDetail } from "../hooks/useDetail";
 import { useAuth } from "../providers/AuthContext";
 import { Image } from "../components/Image";
 import { useGood } from "../hooks/useGood";
+import { useEffect, useState } from "react";
 export const Detail = () => {
   const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
   const { detail, deleteBrochure } = useDetail(brochureID);
+  const [goodCount, setGoodCount] = useState(0);
   const [isAuth] = useAuth();
-  const { addEvaluation, goodUsers, reduceEvaluation } = useGood(brochureID);
-  const filterUser = goodUsers.find((goodUser) => goodUser.user == isAuth.uid);
-  const hasGoodUsers = goodUsers.map((goodUser) => {
-    return goodUser.user;
-  });
-  const isGood = hasGoodUsers.includes(isAuth.uid);
+  const { addEvaluation, reduceEvaluation, isGood } = useGood(brochureID);
+  useEffect(() => {
+    setGoodCount(detail.evaluation);
+  }, [detail.evaluation]);
   return (
     <main className="detail">
       <div className="detail-data" key={brochureID}>
@@ -39,36 +38,34 @@ export const Detail = () => {
         </div>
         <hr />
         <div className="detail-data-detail">
-          {isAuth ? (
-            <div className="good">
-              <p>いいね！：{detail.evaluation}</p>
-            </div>
-          ) : (
-            <></>
-          )}
           {isGood ? (
             <>
-              <p>もういいねしてるよ</p>
-              <img
-                src={goodbutton}
-                alt="いいねぼたん"
-                className="good-cancel-button"
-                onClick={() =>
-                  reduceEvaluation(detail.evaluation, filterUser.goodUserId)
-                }
-              />
+              <span
+                className="material-symbols-rounded favorited"
+                onClick={() => {
+                  setGoodCount(goodCount - 1);
+                  reduceEvaluation(detail.evaluation, goodCount - 1);
+                }}
+              >
+                favorite
+              </span>
             </>
           ) : (
             <>
-              <p>まだいいねしてない</p>
-              <img
-                src={goodbutton}
-                alt="いいねぼたん"
-                className="good-button"
-                onClick={() => addEvaluation(detail.evaluation, isAuth.uid)}
-              />
+              <span
+                className="material-symbols-rounded favorite"
+                onClick={() => {
+                  setGoodCount(goodCount + 1);
+                  addEvaluation(detail.evaluation, goodCount + 1);
+                }}
+              >
+                favorite
+              </span>
             </>
           )}
+          <div className="good">
+            <p>{goodCount}</p>
+          </div>
           <p>誰と：{companions[detail.companion]}</p>
           <p>地域：{regions[detail.region]}</p>
         </div>
