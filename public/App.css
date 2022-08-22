@@ -89,6 +89,9 @@ button {
   font-size: 40px;
   color: rgb(255, 255, 255);
 }
+.material-symbols-rounded {
+  font-size: 40px;
+}
 
 /* header */
 header {
@@ -481,16 +484,6 @@ main {
   justify-content: space-around;
   align-items: center;
 }
-.good-button {
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
-}
-.good-cancel-button {
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
-}
 .trip-details p {
   text-align: center;
   display: flex;
@@ -560,7 +553,7 @@ main {
   align-items: center;
 }
 .favorite {
-  color: black;
+  color: #dddddd;
   cursor: pointer;
 }
 .favorited {
@@ -774,6 +767,10 @@ footer {
     font-size: 20px;
     margin: 0;
   }
+  .material-symbols-rounded {
+    font-size: 20px;
+    margin: 0;
+  }
 
   #menus {
     font-size: 40px;
@@ -841,6 +838,10 @@ footer {
     font-size: 2vw;
   }
   .material-symbols-outlined {
+    font-size: 5vw;
+    margin: 0;
+  }
+  .material-symbols-rounded {
     font-size: 5vw;
     margin: 0;
   }
