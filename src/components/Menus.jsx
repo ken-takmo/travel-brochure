@@ -18,12 +18,22 @@ export const Menus = () => {
           <ul>
             <li>
               <Link
-                to="/mypage"
+                to="/mypost"
                 onClick={() => {
                   setIsClick(false);
                 }}
               >
-                マイページ
+                マイ投稿
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="myfavorits"
+                onClick={() => {
+                  setIsClick(false);
+                }}
+              >
+                お気に入り
               </Link>
             </li>
             <li>

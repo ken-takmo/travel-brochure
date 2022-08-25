@@ -10,11 +10,6 @@ export const useBrochure = (id) => {
   const [loading, setLoading] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
 
-  const updateImage = (preImage, newFileData, update) => {
-    deleteImage(preImage);
-    ImageUpload(newFileData, update);
-  };
-
   const deleteImage = (preImage) => {
     const storageRef = ref(storage, "image/" + preImage);
     deleteObject(storageRef)
@@ -51,6 +46,12 @@ export const useBrochure = (id) => {
       }
     );
   };
+
+  const updateImage = (preImage, newFileData, update) => {
+    deleteImage(preImage);
+    ImageUpload(newFileData, update);
+  };
+
   const postBrochure = async (
     destination,
     theme,

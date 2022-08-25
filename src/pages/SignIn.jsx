@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useUser } from "../hooks/useUser";
+import { useAuthentication } from "../hooks/useAuthentication";
 export const SignIn = () => {
   const location = useLocation();
-  const { signIn } = useUser();
-  const { googleSignIn } = useUser();
+  const { signIn } = useAuthentication();
+  const { googleSignIn } = useAuthentication();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const nextLink = location.state?.from?.pathname || "/list";

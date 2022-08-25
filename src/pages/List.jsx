@@ -7,7 +7,7 @@ export const List = () => {
   return (
     <main className="list">
       <h2>一覧</h2>
-      <div className="list-image">{<GetList deta={allBrochure} />}</div>
+      <div className="brochures">{<GetList deta={allBrochure} />}</div>
     </main>
   );
 };

@@ -12,6 +12,7 @@ import { Profile } from "./pages/Profile";
 import { Mypage } from "./pages/Mypage";
 import { RequireSignin } from "./pages/RequireSignin";
 import { RequireSignOut } from "./pages/RequireSignOut";
+import { MyFavoriteBroshures } from "./pages/MyFavoriteBrochures";
 import { useAuth } from "./providers/AuthContext";
 
 function App() {
@@ -39,7 +40,11 @@ function App() {
                       <Route path="/signup" element={<RequireSignOut />} />
                       <Route path="/signin" element={<RequireSignOut />} />
                       <Route path="/profile" element={<Profile />} />
-                      <Route path="/mypage" element={<Mypage />} />
+                      <Route path="/mypost" element={<Mypage />} />
+                      <Route
+                        path="/myfavorits"
+                        element={<MyFavoriteBroshures />}
+                      />
                     </>
                   ) : (
                     <>
@@ -53,7 +58,8 @@ function App() {
                       <Route path="/signup" element={<SignUp />} />
                       <Route path="/signin" element={<SignIn />} />
                       <Route path="/profile" element={<RequireSignin />} />
-                      <Route path="/mypage" element={<RequireSignin />} />
+                      <Route path="/mypost" element={<RequireSignin />} />
+                      <Route path="/myfavorits" element={<RequireSignin />} />
                     </>
                   )}
                 </Routes>

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useUser } from "../hooks/useUser";
+import { useAuthentication } from "../hooks/useAuthentication";
 export const SignUp = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState();
-  const { signUp } = useUser();
+  const [password, setPassword] = useState("");
+  const { signUp } = useAuthentication();
   return (
     <main className="signup">
       <div className="forms">
@@ -24,7 +24,13 @@ export const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <br />
-          <button onClick={() => signUp(email, password)}>登録</button>
+          <button
+            onClick={() => {
+              signUp(email, password);
+            }}
+          >
+            登録
+          </button>
         </div>
       </div>
     </main>

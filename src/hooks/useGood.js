@@ -1,8 +1,13 @@
 import { db } from "../database/db";
 import { useEffect, useState } from "react";
-import { collection, doc, setDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  setDoc,
+  getDocs,
+  deleteDoc,
+} from "firebase/firestore";
 import { useAuth } from "../providers/AuthContext";
-import { users } from "./users";
 
 export const useGood = (id) => {
   const [isAuth] = useAuth();
@@ -10,6 +15,13 @@ export const useGood = (id) => {
   const [isGood, setIsGood] = useState(false);
   const [filterUser, setFilterUser] = useState({});
   const goodCollectionRef = collection(db, "trips", id, "goodUsers");
+  const favoriteBrochuresRef = doc(
+    db,
+    "users",
+    isAuth.uid,
+    "favoriteBrochures",
+    id
+  );
 
   useEffect(() => {
     const getGoodUser = async () => {
@@ -54,10 +66,29 @@ export const useGood = (id) => {
     }
   }, [goodUsers]);
 
+  const addFavoriteBrochures = () => {
+    try {
+      setDoc(favoriteBrochuresRef, {
+        brochureId: id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteFavoriteBrochures = () => {
+    try {
+      deleteDoc(favoriteBrochuresRef);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const addGoodUser = async () => {
     try {
       await setDoc(doc(goodCollectionRef), {
         user: isAuth.uid,
+        userName: isAuth.displayName,
       });
       setIsGood(true);
     } catch (err) {
@@ -66,16 +97,16 @@ export const useGood = (id) => {
   };
 
   const addEvaluation = async (evaluation, goodCount) => {
+    addGoodUser();
+    addFavoriteBrochures();
     try {
       if (evaluation == goodCount) {
-        // users(isAuth.uid, id);
-        addGoodUser();
         await db.collection("trips").doc(id).update({
           evaluation: evaluation,
         });
       } else {
         console.log("add");
-        addGoodUser();
+        // addUsersFavorite(isAuth.uid, id);
         await db
           .collection("trips")
           .doc(id)
@@ -105,16 +136,14 @@ export const useGood = (id) => {
 
   const reduceEvaluation = async (evaluation, goodCount) => {
     try {
-      console.log(evaluation);
-      console.log(goodCount);
+      deleteGoodUser();
+      deleteFavoriteBrochures();
       if (evaluation == goodCount) {
-        deleteGoodUser();
         await db.collection("trips").doc(id).update({
           evaluation: evaluation,
         });
       } else {
         console.log("reduce");
-        deleteGoodUser();
         await db
           .collection("trips")
           .doc(id)

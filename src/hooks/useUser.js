@@ -1,79 +1,35 @@
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../database/db";
+import { db } from "../database/db";
 import { useAuth } from "../providers/AuthContext";
+import { updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
 
 export const useUser = () => {
-  const navigate = useNavigate();
   const [isAuth] = useAuth();
-  const provider = new GoogleAuthProvider();
+  const navigate = useNavigate();
 
-  const googleSignIn = (nextLink) => {
-    console.log("googlesignin");
-    signInWithPopup(auth, provider)
-      .then(() => {
-        if (auth.currentUser.displayName) {
-          alert("ログインしました");
-          navigate(`${nextLink}`);
-        } else {
-          alert("ログインしました。ユーザーネームの登録をしてください");
-          navigate("/profile");
-        }
-      })
-      .catch(() => alert("ログインに失敗しました"));
-  };
-  const signIn = (email, password, nextLink) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        alert("ログインしました");
-        if (auth.currentUser.displayName) {
-          navigate(`${nextLink}`);
-        } else {
-          alert("ユーザーネームの登録をしてください");
-          navigate("/profile");
-        }
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
-  };
-  const signUp = (email, password) => {
-    console.log("signup");
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        alert("登録されました。ユーザーネームの登録をしてください。");
-        navigate("/profile");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorCode, errorMessage);
-      });
+  const updateUserName = (newUserName) => {
+    const userRef = doc(db, "users", isAuth.uid);
+    try {
+      console.log("addUser");
+      setDoc(
+        userRef,
+        {
+          userName: newUserName,
+        },
+        { merge: true }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const signOut = () => {
-    auth
-      .signOut()
-      .then(() => {
-        alert("ログアウトしました");
-        navigate("/signin");
-      })
-      .catch(() => alert("ログアウト失敗"));
-  };
-
-  const updateUser = (NewuserName) => {
+  const updateUser = (newUserName) => {
     updateProfile(isAuth, {
-      displayName: NewuserName,
+      displayName: newUserName,
     })
       .then(() => {
+        updateUserName(isAuth.displayName);
         alert("ユーザー名が登録されました");
         navigate("/list");
       })
@@ -83,11 +39,19 @@ export const useUser = () => {
   };
 
   return {
-    signUp,
-    signIn,
-    signOut,
     updateUser,
-    // provider,
-    googleSignIn,
   };
 };
+
+// export const userName = async (newUserName) => {};
+// useEffect(() => {
+//     const getMyfavoriteBrochures = async() => {
+//         const results = [];
+//         try{
+//             const favoriteBrochures = await db.collection("users").doc(userId).get();
+//             favoriteBrochures.forEach( favoriteBrochure => {
+//                 results.push()
+//             });
+//         }
+//     }
+// },[])
