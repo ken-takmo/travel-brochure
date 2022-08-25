@@ -8,7 +8,6 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { useAuth } from "../providers/AuthContext";
-import { useUser } from "./useUser";
 
 export const useGood = (id) => {
   const [isAuth] = useAuth();
@@ -23,7 +22,6 @@ export const useGood = (id) => {
     "favoriteBrochures",
     id
   );
-  const { addUsersFavorite } = useUser();
 
   useEffect(() => {
     const getGoodUser = async () => {
@@ -90,6 +88,7 @@ export const useGood = (id) => {
     try {
       await setDoc(doc(goodCollectionRef), {
         user: isAuth.uid,
+        userName: isAuth.displayName,
       });
       setIsGood(true);
     } catch (err) {
@@ -137,8 +136,6 @@ export const useGood = (id) => {
 
   const reduceEvaluation = async (evaluation, goodCount) => {
     try {
-      console.log(evaluation);
-      console.log(goodCount);
       deleteGoodUser();
       deleteFavoriteBrochures();
       if (evaluation == goodCount) {

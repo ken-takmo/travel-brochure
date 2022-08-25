@@ -38,14 +38,8 @@ export const useUser = () => {
       });
   };
 
-  const addUsersFavorite = (userId, brochureId) => {
-    const userRef = doc(db, "users", userId);
-    setDoc(userRef, { favoriteBroshure: brochureId }, { merge: false });
-  };
-
   return {
     updateUser,
-    addUsersFavorite,
   };
 };
 

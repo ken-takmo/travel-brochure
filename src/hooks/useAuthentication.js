@@ -43,7 +43,7 @@ export const useAuthentication = () => {
   const signIn = (email, password, nextLink) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        console.log(auth.currentUser.uid);
+        addUser(auth.currentUser.uid, auth.currentUser.displayName);
         alert("ログインしました");
         if (auth.currentUser.displayName) {
           navigate(`${nextLink}`);
