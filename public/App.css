@@ -474,20 +474,13 @@ main {
   color: #fff;
 }
 
-.trip-details {
-  background-color: #fff;
-  height: 30%;
-  display: flex;
+.trip-data-main small {
+  margin: 0 auto;
 }
+
 .good {
   display: flex;
   justify-content: space-around;
-  align-items: center;
-}
-.trip-details p {
-  text-align: center;
-  display: flex;
-  justify-content: center;
   align-items: center;
 }
 
