@@ -12,16 +12,23 @@ export const useAuthentication = () => {
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
 
-  const addUser = (userId, userName) => {
+  const addUser = (userId, userName = null) => {
     const userRef = doc(db, "users", userId);
-    setDoc(userRef, { userId: userId, userName: userName || undefined });
+    try {
+      console.log("addUser");
+      setDoc(userRef, {
+        userId: userId,
+        userName: userName,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const googleSignIn = (nextLink) => {
-    console.log("googlesignin");
     signInWithPopup(auth, provider)
       .then(() => {
-        // addUser(auth.currentUser.uid, auth.currentUser.displayName);
+        addUser(auth.currentUser.uid, auth.currentUser.displayName);
         if (auth.currentUser.displayName) {
           alert("ログインしました");
           navigate(`${nextLink}`);
@@ -32,6 +39,7 @@ export const useAuthentication = () => {
       })
       .catch(() => alert("ログインに失敗しました"));
   };
+
   const signIn = (email, password, nextLink) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
@@ -50,11 +58,13 @@ export const useAuthentication = () => {
         alert(errorMessage);
       });
   };
+
   const signUp = (email, password) => {
     console.log("signup");
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        alert("登録されました。ユーザーネームの登録をしてください。");
+        addUser(auth.currentUser.uid);
+        alert("ユーザーネームの登録をしてください。");
         navigate("/profile");
       })
       .catch((error) => {
@@ -79,5 +89,6 @@ export const useAuthentication = () => {
     signIn,
     signOut,
     googleSignIn,
+    addUser,
   };
 };
