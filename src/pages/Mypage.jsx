@@ -8,13 +8,13 @@ export const Mypage = () => {
         <main className="mypage">
           <h1>マイ投稿</h1>
           {
-            <div className="list-image">
+            <div className="brochures">
               <GetList deta={myBrochures} />
             </div>
           }
         </main>
       ) : (
-        <div className="no-mybrochures">
+        <div className="no-content">
           <h2>投稿がありません</h2>
         </div>
       )}
