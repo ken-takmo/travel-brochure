@@ -38,36 +38,48 @@ export const Detail = () => {
         </div>
         <hr />
         <div className="detail-data-detail">
-          {isGood ? (
+          {isAuth ? (
             <>
-              <span
-                className="material-symbols-rounded favorited"
-                onClick={() => {
-                  setGoodCount(goodCount - 1);
-                  reduceEvaluation(detail.evaluation, goodCount - 1);
-                }}
-              >
-                favorite
-              </span>
+              {isGood ? (
+                <>
+                  <span
+                    className="material-symbols-rounded favorited"
+                    onClick={() => {
+                      setGoodCount(goodCount - 1);
+                      reduceEvaluation(detail.evaluation, goodCount - 1);
+                    }}
+                  >
+                    favorite
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span
+                    className="material-symbols-rounded favorite"
+                    onClick={() => {
+                      setGoodCount(goodCount + 1);
+                      addEvaluation(detail.evaluation, goodCount + 1);
+                    }}
+                  >
+                    favorite
+                  </span>
+                </>
+              )}
+              <div className="good">
+                <p>{goodCount}</p>
+              </div>
+              <p>誰と：{companions[detail.companion]}</p>
+              <p>地域：{regions[detail.region]}</p>
             </>
           ) : (
             <>
-              <span
-                className="material-symbols-rounded favorite"
-                onClick={() => {
-                  setGoodCount(goodCount + 1);
-                  addEvaluation(detail.evaluation, goodCount + 1);
-                }}
-              >
-                favorite
-              </span>
+              <div className="good">
+                <p>{goodCount} いいね！</p>
+              </div>
+              <p>誰と：{companions[detail.companion]}</p>
+              <p>地域：{regions[detail.region]}</p>
             </>
           )}
-          <div className="good">
-            <p>{goodCount}</p>
-          </div>
-          <p>誰と：{companions[detail.companion]}</p>
-          <p>地域：{regions[detail.region]}</p>
         </div>
         <nav className="detail-data-links">
           {isAuth ? (
