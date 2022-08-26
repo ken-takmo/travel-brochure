@@ -15,28 +15,25 @@ export const useGood = (id) => {
   const [isGood, setIsGood] = useState(false);
   const [filterUser, setFilterUser] = useState({});
   const goodCollectionRef = collection(db, "trips", id, "goodUsers");
-  const favoriteBrochuresRef = doc(
-    db,
-    "users",
-    isAuth.uid,
-    "favoriteBrochures",
-    id
-  );
 
   useEffect(() => {
-    const getGoodUser = async () => {
-      let users = [];
-      const snapShots = await getDocs(goodCollectionRef);
-      if (snapShots) {
-        snapShots.forEach((s) => {
-          users.push({ goodUserId: s.id, user: s.data().user });
-        });
-        setGoodUSers(users);
-      } else {
-        console.log("no");
-      }
-    };
-    getGoodUser();
+    if (isAuth) {
+      const getGoodUser = async () => {
+        let users = [];
+        const snapShots = await getDocs(goodCollectionRef);
+        if (snapShots) {
+          snapShots.forEach((s) => {
+            users.push({ goodUserId: s.id, user: s.data().user });
+          });
+          setGoodUSers(users);
+        } else {
+          console.log("no");
+        }
+      };
+      getGoodUser();
+    } else {
+      return;
+    }
   }, [isGood]);
 
   useEffect(() => {
@@ -67,6 +64,13 @@ export const useGood = (id) => {
   }, [goodUsers]);
 
   const addFavoriteBrochures = () => {
+    const favoriteBrochuresRef = doc(
+      db,
+      "users",
+      isAuth.uid,
+      "favoriteBrochures",
+      id
+    );
     try {
       setDoc(favoriteBrochuresRef, {
         brochureId: id,
@@ -77,6 +81,13 @@ export const useGood = (id) => {
   };
 
   const deleteFavoriteBrochures = () => {
+    const favoriteBrochuresRef = doc(
+      db,
+      "users",
+      isAuth.uid,
+      "favoriteBrochures",
+      id
+    );
     try {
       deleteDoc(favoriteBrochuresRef);
     } catch (err) {
@@ -105,8 +116,6 @@ export const useGood = (id) => {
           evaluation: evaluation,
         });
       } else {
-        console.log("add");
-        // addUsersFavorite(isAuth.uid, id);
         await db
           .collection("trips")
           .doc(id)
