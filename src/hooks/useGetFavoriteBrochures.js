@@ -48,18 +48,5 @@ export const useGetFavoriteBrochures = (userId) => {
     getFavoriteDocs();
   }, [userId]);
 
-  //   const getBrochuresData = () => {
-  //     const results = [];
-  //     try {
-  //       favoriteBrochures.forEach(async (brochure) => {
-  //         const res = await getDoc(brochure);
-  //         results.push(res.data());
-  //         setFavoriteBrochuresData(results);
-  //       });
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-
   return favoriteBrochuresData;
 };
