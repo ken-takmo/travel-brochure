@@ -24,7 +24,7 @@ export const useBrochure = (id) => {
 
     uploadImage.on(
       "state_changed",
-      (snapshot) => {
+      () => {
         setLoading(true);
       },
       (err) => {
