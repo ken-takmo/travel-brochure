@@ -19,7 +19,6 @@ export const SignUp = () => {
           <label htmlFor="password">パスワード</label>
           <input
             type="text"
-            name=""
             id="password"
             onChange={(e) => setPassword(e.target.value)}
           />
