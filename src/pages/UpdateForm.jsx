@@ -102,7 +102,7 @@ export const UpdateForm = () => {
                     </div>
                     <br />
                     <div className="image">{<Image url={detail.image} />}</div>
-                    <label htmlFor="image">画像(変更ない場合は未入力)</label>
+                    <label htmlFor="image">画像(変更ない場合は入力不要)</label>
                     <input
                       type="file"
                       id="image"
