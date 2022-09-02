@@ -113,9 +113,9 @@ export const UpdateForm = () => {
                     <button
                       onClick={() =>
                         updateBrochure(
-                          destination,
-                          theme,
-                          content,
+                          destination.trim(),
+                          theme.trim(),
+                          content.trim(),
                           companion,
                           region,
                           preImage,

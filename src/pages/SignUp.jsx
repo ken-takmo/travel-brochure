@@ -25,7 +25,7 @@ export const SignUp = () => {
           <br />
           <button
             onClick={() => {
-              signUp(email, password);
+              signUp(email.trim(), password.trim());
             }}
           >
             登録
