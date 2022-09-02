@@ -28,7 +28,9 @@ export const SignIn = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <br />
-          <button onClick={() => signIn(email, password, nextLink)}>
+          <button
+            onClick={() => signIn(email.trim(), password.trim(), nextLink)}
+          >
             ログイン
           </button>
         </div>
