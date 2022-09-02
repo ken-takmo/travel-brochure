@@ -33,7 +33,7 @@ export const Profile = () => {
               onChange={(e) => setNewUserName(e.target.value)}
             />
             <br />
-            <button onClick={() => updateUser(newUserName)}>登録</button>
+            <button onClick={() => updateUser(newUserName.trim())}>登録</button>
           </div>
         </div>
       )}
