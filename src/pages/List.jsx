@@ -6,7 +6,7 @@ export const List = () => {
   return (
     <main className="list">
       <h2>一覧</h2>
-      <div className="brochures">{<BrochureData deta={brochureList} />}</div>
+      <div className="brochures">{<BrochureData data={brochureList} />}</div>
     </main>
   );
 };
