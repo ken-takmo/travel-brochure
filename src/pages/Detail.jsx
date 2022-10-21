@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { regions, companions } from "../utils/utils";
 import { useDetail } from "../hooks/useDetail";
 import { useAuth } from "../providers/AuthContext";
@@ -6,9 +6,8 @@ import { Image } from "../components/Image";
 import { useGood } from "../hooks/useGood";
 import { useGetFavoriteUsers } from "../hooks/useGetFavoriteUsers";
 import { useEffect, useState } from "react";
-import { EditButton } from "../utils/EditButton";
+import { EditButton } from "../components/EditButton";
 export const Detail = () => {
-  const navigate = useNavigate();
   const params = useParams();
   const brochureID = params.id;
   const { detail, deleteBrochure } = useDetail(brochureID);
@@ -89,23 +88,18 @@ export const Detail = () => {
             <>
               {isAuth.uid === detail.userId ? (
                 <>
-                  <button onClick={() => navigate(`/updateform/${brochureID}`)}>
-                    編集
-                  </button>
-                  <button onClick={() => navigate("/list")}>戻る</button>
+                  <EditButton url={`/updateform/${brochureID}`} text={"編集"} />
+                  <EditButton url={"/list"} text={"戻る"} />
                   <button onClick={() => deleteBrochure(detail.image)}>
                     削除
                   </button>
-                  <EditButton url={`/updateform/${brochureID}`} text={"編集"} />
-                  <EditButton url={"/list"} text={"戻る"} />
-                  <EditButton url={detail.image} text={"削除"} />
                 </>
               ) : (
-                <button onClick={() => navigate(-1)}>戻る</button>
+                <EditButton url={-1} text={"戻る"} />
               )}
             </>
           ) : (
-            <button onClick={() => navigate(-1)}>戻る</button>
+            <EditButton url={-1} text={"戻る"} />
           )}
         </nav>
       </div>
