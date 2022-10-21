@@ -6,6 +6,7 @@ import { Image } from "../components/Image";
 import { useGood } from "../hooks/useGood";
 import { useGetFavoriteUsers } from "../hooks/useGetFavoriteUsers";
 import { useEffect, useState } from "react";
+import { EditButton } from "../utils/EditButton";
 export const Detail = () => {
   const navigate = useNavigate();
   const params = useParams();
@@ -95,6 +96,9 @@ export const Detail = () => {
                   <button onClick={() => deleteBrochure(detail.image)}>
                     削除
                   </button>
+                  <EditButton url={`/updateform/${brochureID}`} text={"編集"} />
+                  <EditButton url={"/list"} text={"戻る"} />
+                  <EditButton url={detail.image} text={"削除"} />
                 </>
               ) : (
                 <button onClick={() => navigate(-1)}>戻る</button>
