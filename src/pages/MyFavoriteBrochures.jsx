@@ -1,6 +1,6 @@
 import { useGetFavoriteBrochures } from "../hooks/useGetFavoriteBrochures";
 import { useAuth } from "../providers/AuthContext";
-import { GetList } from "../components/GetList";
+import { GetList } from "../components/BrochureData";
 export const MyFavoriteBroshures = () => {
   const [isAuth] = useAuth();
   const favoriteBrochuresData = useGetFavoriteBrochures(isAuth.uid);

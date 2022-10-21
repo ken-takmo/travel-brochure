@@ -49,7 +49,6 @@ export const useGood = (id) => {
         setFilterUser(
           goodUsers.find((goodUser) => goodUser.user == isAuth.uid)
         );
-        console.log(filterUser);
         console.log("いいねしてる");
         setIsGood(true);
       } else {

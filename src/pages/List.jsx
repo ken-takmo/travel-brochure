@@ -1,13 +1,12 @@
-import { GetList } from "../components/GetList";
-import { useGetAll } from "../hooks/useGetAll";
+import { BrochureData } from "../components/BrochureData";
+import { useGetBrochureList } from "../hooks/useGetBrochureList";
 
 export const List = () => {
-  const { allBrochure } = useGetAll();
-
+  const { brochureList } = useGetBrochureList();
   return (
     <main className="list">
       <h2>一覧</h2>
-      <div className="brochures">{<GetList deta={allBrochure} />}</div>
+      <div className="brochures">{<BrochureData deta={brochureList} />}</div>
     </main>
   );
 };

@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react";
 import { db } from "../database/db";
 
-export const useGetAll = () => {
-  const [allBrochure, setAllBrochure] = useState([]);
+// 命名brochureListに
+export const useGetBrochureList = () => {
+  const [brochureList, setBrochureList] = useState([]);
 
   useEffect(() => {
-    const getAllBrochure = async () => {
-      console.log("getallbrochure");
-      const _trips = [];
+    const getBrochureListData = async () => {
+      const brochureData_array = [];
       try {
         const docs = await db
           .collection("trips")
           .orderBy("createdAt", "desc")
           .get();
         docs.forEach((doc) => {
-          _trips.push({
+          brochureData_array.push({
             tripId: doc.id,
             ...doc.data(),
           });
         });
-        setAllBrochure(_trips);
+        setBrochureList(brochureData_array);
       } catch (error) {
         alert(error);
       }
     };
-    getAllBrochure();
+    getBrochureListData();
   }, []);
 
-  return { allBrochure };
+  return { brochureList };
 };

@@ -4,6 +4,7 @@ import { useDetail } from "../hooks/useDetail";
 import { useAuth } from "../providers/AuthContext";
 import { Image } from "../components/Image";
 import { useGood } from "../hooks/useGood";
+import { useGetFavoriteUsers } from "../hooks/useGetFavoriteUsers";
 import { useEffect, useState } from "react";
 export const Detail = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ export const Detail = () => {
   const [goodCount, setGoodCount] = useState(0);
   const [isAuth] = useAuth();
   const { addEvaluation, reduceEvaluation, isGood } = useGood(brochureID);
+  const { getFavoriteUsers } = useGetFavoriteUsers(brochureID);
   useEffect(() => {
     setGoodCount(detail.evaluation);
   }, [detail.evaluation]);
@@ -66,7 +68,7 @@ export const Detail = () => {
                 </>
               )}
               <div className="good">
-                <p>{goodCount}</p>
+                <p onClick={() => getFavoriteUsers()}>{goodCount}</p>
               </div>
               <p>誰と：{companions[detail.companion]}</p>
               <p>地域：{regions[detail.region]}</p>
@@ -74,7 +76,7 @@ export const Detail = () => {
           ) : (
             <>
               <div className="good">
-                <p>{goodCount} いいね！</p>
+                <p onClick={() => getFavoriteUsers()}>{goodCount} いいね！</p>
               </div>
               <p>誰と：{companions[detail.companion]}</p>
               <p>地域：{regions[detail.region]}</p>

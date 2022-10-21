@@ -1,26 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import { Image } from "./Image";
 
-export const GetList = (props) => {
+export const BrochureData = (props) => {
   const navigate = useNavigate();
   return (
     <div className="trip-datas">
-      {props.deta.map((deta) => {
+      {props.data.map((data) => {
         return (
           <div
             className="trip-data"
-            key={deta.tripId}
-            onClick={() => navigate(`/detail/${deta.tripId}`)}
+            key={data.tripId}
+            onClick={() => navigate(`/datail/${data.tripId}`)}
           >
-            <Image url={deta.image} />
+            <Image url={data.image} />
             <div className="trip-data-main">
               <div className="trip-theme">
-                <p>{deta.theme}</p>
+                <p>{data.theme}</p>
               </div>
               <div className="trip-destination">
-                <p>{deta.destination}</p>
+                <p>{data.destination}</p>
               </div>
-              <small>{deta.evaluation} いいね！</small>
+              <small>{data.evaluation} いいね！</small>
             </div>
           </div>
         );

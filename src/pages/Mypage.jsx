@@ -1,4 +1,4 @@
-import { GetList } from "../components/GetList";
+import { GetList } from "../components/BrochureData";
 import { useGetMyBrochures } from "../hooks/useGetMyBrochures";
 export const Mypage = () => {
   const myBrochures = useGetMyBrochures();
