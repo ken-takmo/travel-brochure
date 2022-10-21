@@ -3,7 +3,11 @@ export const Home = () => {
   return (
     <main className="home">
       <div className="app-description">
-        <img src={bookmarkimage} alt="説明1" className="description-img" />
+        <img
+          src={bookmarkimage}
+          alt="説明ページ画像"
+          className="description-img"
+        />
         <div className="descriptions">
           <p>旅のしおりを共有するアプリです。</p>
           <p>
