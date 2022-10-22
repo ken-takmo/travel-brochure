@@ -1,4 +1,4 @@
-import { GetList } from "../components/BrochureData";
+import { BrochureData } from "../components/BrochureData";
 import { useGetMyBrochures } from "../hooks/useGetMyBrochures";
 export const Mypage = () => {
   const myBrochures = useGetMyBrochures();
@@ -9,7 +9,7 @@ export const Mypage = () => {
           <h1>マイ投稿</h1>
           {
             <div className="brochures">
-              <GetList deta={myBrochures} />
+              <BrochureData data={myBrochures} />
             </div>
           }
         </main>

@@ -1,6 +1,6 @@
 import { useGetFavoriteBrochures } from "../hooks/useGetFavoriteBrochures";
 import { useAuth } from "../providers/AuthContext";
-import { GetList } from "../components/BrochureData";
+import { BrochureData } from "../components/BrochureData";
 export const MyFavoriteBroshures = () => {
   const [isAuth] = useAuth();
   const favoriteBrochuresData = useGetFavoriteBrochures(isAuth.uid);
@@ -15,7 +15,7 @@ export const MyFavoriteBroshures = () => {
         </div>
       ) : (
         <div className="brochures">
-          {<GetList deta={favoriteBrochuresData} />}
+          {<BrochureData data={favoriteBrochuresData} />}
         </div>
       )}
     </main>

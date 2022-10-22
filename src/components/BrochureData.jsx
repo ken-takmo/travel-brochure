@@ -10,7 +10,7 @@ export const BrochureData = (props) => {
           <div
             className="trip-data"
             key={data.tripId}
-            onClick={() => navigate(`/datail/${data.tripId}`)}
+            onClick={() => navigate(`/detail/${data.tripId}`)}
           >
             <Image url={data.image} />
             <div className="trip-data-main">
