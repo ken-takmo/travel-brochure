@@ -17,10 +17,12 @@ export const BrochureData = (props) => {
               <div className="trip-theme">
                 <p>{data.theme}</p>
               </div>
-              <div className="trip-destination">
-                <p>{data.destination}</p>
+              <div className="trip-data-sub">
+                <div className="trip-destination">
+                  <p>{data.destination}</p>
+                </div>
+                <small>{data.evaluation} いいね！</small>
               </div>
-              <small>{data.evaluation} いいね！</small>
             </div>
           </div>
         );

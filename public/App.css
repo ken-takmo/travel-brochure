@@ -439,6 +439,12 @@ main {
   border-radius: 0 0 20px 20px;
 }
 
+.trip-data-sub {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .trip-destination {
   background-color: #fff;
   height: 30%;
@@ -726,10 +732,15 @@ main {
 footer {
   height: 20vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: black;
   color: #fff;
+}
+
+footer a {
+  color: white;
 }
 
 @media screen and (max-width: 480px) {
@@ -828,6 +839,17 @@ footer {
   .detail-data {
     width: 80vw;
   }
+
+  .trip-data-sub {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .trip-data-main small {
+    font-size: 2vw;
+    margin: 0;
+  }
 }
 
 @media screen and (min-width: 481px) and (max-width: 840px) {
@@ -911,6 +933,15 @@ footer {
   }
   .trip-destination p {
     font-size: 1.5vw;
+  }
+  .trip-data-main small {
+    margin: 0;
+  }
+  .trip-data-sub {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
   }
   .trip-data:not(:first-child) {
     margin-left: 0;
