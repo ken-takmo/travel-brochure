@@ -13,6 +13,7 @@ import { Mypage } from "./pages/Mypage";
 import { RequireSignin } from "./pages/RequireSignin";
 import { RequireSignOut } from "./pages/RequireSignOut";
 import { MyFavoriteBroshures } from "./pages/MyFavoriteBrochures";
+import { Page_404 } from "./pages/page_404";
 import { useAuth } from "./providers/AuthContext";
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
                       <Route path="/myfavorits" element={<RequireSignin />} />
                     </>
                   )}
+                  <Route path="*" element={<Page_404 />} />
                 </Routes>
                 <Footer />
               </BrowserRouter>

@@ -727,6 +727,12 @@ main {
   color: #ffacf1;
   font-size: 30px;
 }
+
+/* Page_404 */
+.description-404 {
+  text-align: center;
+}
+
 /* footer */
 
 footer {
