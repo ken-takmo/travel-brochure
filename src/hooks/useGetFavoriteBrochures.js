@@ -9,7 +9,9 @@ export const useGetFavoriteBrochures = (userId) => {
     userId,
     "favoriteBrochures"
   );
-  const [favoriteBrochuresData, setFavoriteBrochuresData] = useState([]);
+  const [favoriteBrochuresDataList, setFavoriteBrochuresDataList] = useState(
+    []
+  );
 
   const getBrochuresData = (favoriteBroshuresDocRefs) => {
     const results = [];
@@ -17,7 +19,7 @@ export const useGetFavoriteBrochures = (userId) => {
       favoriteBroshuresDocRefs.forEach(async (brochure) => {
         const res = await getDoc(brochure);
         results.push({ tripId: res.id, ...res.data() });
-        setFavoriteBrochuresData(results);
+        setFavoriteBrochuresDataList(results);
       });
     } catch (err) {
       console.log(err);
@@ -48,5 +50,5 @@ export const useGetFavoriteBrochures = (userId) => {
     getFavoriteDocs();
   }, [userId]);
 
-  return favoriteBrochuresData;
+  return favoriteBrochuresDataList;
 };
